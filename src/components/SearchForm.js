@@ -1,33 +1,29 @@
-import React, { useState } from 'react'
-import Album from './Album'
-import Search from './Search'
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import axios from 'axios'
-
-const SearchForm = () => {
-    const [albums, setAlbums] = useState({ albummatches: {
-        album: []
-    }})
-
-    const fetchAlbums = async (query) => {
-        const response = await axios.get('http://localhost:3003', {
-            params: {
-                query: query
-            }
-        })
-        setAlbums(response.data.results)
-    }
-
-
+const SearchForm = (props) => {
+    const { albums } = props
     return (
-        <div>
-        <Search
-        fetchAlbums={fetchAlbums}
-        />
-        {Object.keys(albums.albummatches).length === 0 ? <div /> : <Album albums={albums.albummatches.album} />}
-        </div>
-
+        <ul>
+            {albums.map(album => (
+                <li key={album.mbid}>
+                    <Link to={`/albums/${album.name}`}>
+                        {album.artist} - {album.name}
+                    </Link>
+                </li>
+            ))}
+        </ul>
     )
 }
 
-export default SearchForm
+const mapStateToProps = state => {
+    return {
+        albums: state.data.albums
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(SearchForm)

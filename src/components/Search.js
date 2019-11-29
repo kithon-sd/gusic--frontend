@@ -1,22 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const Search = (props) => {
-    const [query, setQuery] = useState('')
-
-    const { fetchAlbums } = props
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        fetchAlbums(query)
-    }
-
-    const handleChange = (e) => {
-        setQuery(e.target.value)
-    }
+    const {
+        handleSubmit,
+        handleChange,
+        query
+    } = props
 
     return (
-        <form  onSubmit={handleSubmit}>
-            <input value={query} onChange={handleChange} />
+        <form onSubmit={handleSubmit}>
+            <input
+            value={query}
+            onChange={handleChange}
+            placeholder='Enter an album title'
+            />
         </form>
     )
 }

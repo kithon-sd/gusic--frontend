@@ -1,18 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { fetchAlbum } from '../reducers/albumListReducer'
 
 const Album = (props) => {
-    const { albums } = props
-
     return (
-        <ul>
-            {albums.map(album => (
-                <li key={album.mbid}>
-                    {album.artist} - {album.name}
-                </li>
-            ))}
-        </ul>
+        <h1>placeholder</h1>
     )
 }
 
-export default Album
+const mapStateToProps = state => {
+    return {
+        albums: state.data.albums
+    }
+}
+
+const mapDispatchToProps = {
+    fetchAlbum
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Album)
 

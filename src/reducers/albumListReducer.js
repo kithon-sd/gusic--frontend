@@ -1,3 +1,5 @@
+import mainService from '../services/mainService'
+
 const initialState = {
     albums: [],
     count: 0
@@ -9,11 +11,13 @@ const albumListReducer = ( state = initialState, action ) => {
             return state;
         case 'FIND':
             return action.data;
+        case 'FETCH_ALBUM_INFO':
+            return action.data
     }
 }
 
 export const findAlbums = (query, offset) => async (dispatch) => {
-    const response = await service.findAlbums(query, offset);
+    const response = await mainService.findAlbums(query, offset);
     dispatch({
         type: 'FIND',
         data: {
@@ -23,4 +27,15 @@ export const findAlbums = (query, offset) => async (dispatch) => {
     })
 }
 
-export default albumlistReducer
+export const fetchAlbum = (name) => async (dispatch) => {
+    const response = await mainService.fetchAlbum(name);
+    dispatch({
+        type: 'FETCH_ALBUM_INFO',
+        data: {
+            albums: response.data.album,
+            count: 1
+        }
+    })
+}
+
+export default albumListReducer
