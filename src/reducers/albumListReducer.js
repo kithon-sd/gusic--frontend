@@ -27,8 +27,8 @@ export const findAlbums = (query, offset) => async (dispatch) => {
     })
 }
 
-export const fetchAlbum = (name) => async (dispatch) => {
-    const response = await mainService.fetchAlbum(name);
+export const fetchAlbum = (artist, album) => async (dispatch) => {
+    const response = await mainService.fetchAlbumInfo(artist, album);
     dispatch({
         type: 'FETCH_ALBUM_INFO',
         data: {

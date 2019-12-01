@@ -11,10 +11,11 @@ const findAlbums = async (query, offset) => {
     return response
 }
 
-const fetchAlbumInfo = async (id) => {
-    const response = await axios.get(url, {
+const fetchAlbumInfo = async (artist, album) => {
+    const response = await axios.get(`${url}/placeholder`, {
         params: {
-            id: id
+            artist: artist,
+            album: album
         }
     })
     return response

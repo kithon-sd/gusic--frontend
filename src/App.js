@@ -9,7 +9,7 @@ const App = () => {
     <Router>
       <Route exact path='/' component={Main} />
       <Route path='/search' component={SearchForm} />
-      <Route path='/albums/:albumName' component={Album} />
+      <Route path='/music/:albumArtist/:albumName' component={Album} />
     </Router>
   )
 }

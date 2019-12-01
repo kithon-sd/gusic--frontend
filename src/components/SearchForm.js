@@ -8,7 +8,7 @@ const SearchForm = (props) => {
         <ul>
             {albums.map(album => (
                 <li key={album.mbid}>
-                    <Link to={`/albums/${album.name}`}>
+                    <Link to={`/music/${album.artist}/${album.name}`}>
                         {album.artist} - {album.name}
                     </Link>
                 </li>

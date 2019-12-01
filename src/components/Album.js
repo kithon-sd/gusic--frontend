@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchAlbum } from '../reducers/albumListReducer'
 
 const Album = (props) => {
+    const { albumName, albumArtist } = props.match.params
+    
+    useEffect(() => {
+        props.fetchAlbum(albumArtist, albumName)
+    }, [])
+
     return (
-        <h1>placeholder</h1>
+        <h1>{ albumName } - { albumArtist }</h1>
     )
 }
 
