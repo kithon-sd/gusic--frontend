@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import queryString from 'query-string'
+
+import { findAlbums } from '../reducers/albumListReducer'
 
 const SearchForm = (props) => {
     const { albums } = props
+    const query = queryString.parse(props.location.search).query
+
+    useEffect(() => {
+        props.findAlbums(query)
+    }, [])
+
+    if ( albums.length === 0 ) return <div>Loading..</div>
+
     return (
         <ul>
             {albums.map(album => (
@@ -23,7 +34,11 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = {
+    findAlbums
+}
+
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(SearchForm)

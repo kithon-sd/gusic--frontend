@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { findAlbums } from '../reducers/albumListReducer'
 import Search from './Search'
 
-const Main = (props) => {
+const Main = () => {
     const [query, setQuery] = useState('')
     const [redirect, setRedirect] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.findAlbums(query)
         setRedirect(true)
     }
 
@@ -19,7 +17,10 @@ const Main = (props) => {
         setQuery(e.target.value)
     }
 
-    if (redirect) return <Redirect push to='/search' />
+    if (redirect) return <Redirect push to={{
+        pathname: '/search',
+        search: `?query=${query}`
+    }} />
 
     return (
         <Search 
@@ -30,13 +31,7 @@ const Main = (props) => {
     )
 }
 
-
-
-const mapDispatchToProps = {
-    findAlbums
-}
-
 export default connect(
     null,
-    mapDispatchToProps
+    null
 )(Main)

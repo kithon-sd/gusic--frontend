@@ -4,19 +4,32 @@ import { fetchAlbum } from '../reducers/albumListReducer'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
+    const { album } = props
+    console.log(album)
     
     useEffect(() => {
         props.fetchAlbum(albumArtist, albumName)
     }, [])
 
+    if (!album.name) return <h2>Loading...</h2>
+
     return (
-        <h1>{ albumName } - { albumArtist }</h1>
+        <div>
+            <div>
+                <h1>{album.name}</h1>
+                <h2>{album.artist}</h2>
+            </div>
+            {album.wiki ?
+            <p>{album.wiki.summary}</p>
+            : <p>No description available for this album</p>
+            }
+        </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        albums: state.data.albums
+        album: state.data.albums
     }
 }
 
