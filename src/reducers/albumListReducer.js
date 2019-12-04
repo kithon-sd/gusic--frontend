@@ -12,6 +12,8 @@ const albumListReducer = ( state = initialState, action ) => {
         case 'FIND':
             return action.data;
         case 'FETCH_ALBUM_INFO':
+            return action.data;
+        case 'RESET':
             return action.data
     }
 }
@@ -27,9 +29,9 @@ export const findAlbums = (query, offset) => async (dispatch) => {
     })
 }
 
-export const fetchAlbum = (artist, album) => async (dispatch) => {
+export const fetchAlbum = (artist, album, limit = 9) => async (dispatch) => {
     const responseAlbum = await mainService.fetchAlbumInfo(artist, album);
-    const responseSimilar = await mainService.fetchSimilarArtists(artist);
+    const responseSimilar = await mainService.fetchSimilarArtists(artist, limit);
     dispatch({
         type: 'FETCH_ALBUM_INFO',
         data: {
@@ -40,6 +42,13 @@ export const fetchAlbum = (artist, album) => async (dispatch) => {
             count: 1
         }
     })
+}
+
+export const resetAlbums = () => {
+    return {
+        type: 'RESET',
+        data: initialState
+    }
 }
 
 export default albumListReducer
