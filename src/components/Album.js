@@ -11,7 +11,7 @@ const Album = (props) => {
         props.fetchAlbum(albumArtist, albumName)
     }, [])
 
-    if (!album.name) return <h2>Loading...</h2>
+    if (!album) return <h2>Loading...</h2>
 
     return (
         <div>
@@ -29,7 +29,7 @@ const Album = (props) => {
 
 const mapStateToProps = state => {
     return {
-        album: state.data.albums
+       album: state.data.albumData.album
     }
 }
 

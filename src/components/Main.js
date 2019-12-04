@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
 
 import Search from './Search'
 
@@ -31,7 +30,4 @@ const Main = () => {
     )
 }
 
-export default connect(
-    null,
-    null
-)(Main)
+export default Main

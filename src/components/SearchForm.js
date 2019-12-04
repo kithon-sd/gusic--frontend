@@ -13,24 +13,23 @@ const SearchForm = (props) => {
         props.findAlbums(query)
     }, [])
 
-    if ( albums.length === 0 ) return <div>Loading..</div>
 
     return (
         <ul>
-            {albums.map(album => (
+            {albums.length > 0 ? albums.map(album => (
                 <li key={album.mbid}>
                     <Link to={`/music/${album.artist}/${album.name}`}>
                         {album.artist} - {album.name}
                     </Link>
                 </li>
-            ))}
+            )) : <h2>Loading..</h2>}
         </ul>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        albums: state.data.albums
+        albums: state.data.albumData
     }
 }
 

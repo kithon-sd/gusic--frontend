@@ -1,7 +1,7 @@
 import mainService from '../services/mainService'
 
 const initialState = {
-    albums: [],
+    albumData: [],
     count: 0
 }
 
@@ -21,18 +21,22 @@ export const findAlbums = (query, offset) => async (dispatch) => {
     dispatch({
         type: 'FIND',
         data: {
-            albums: response.data.results.albummatches.album,
+            albumData: response.data.results.albummatches.album,
             count: response.data.results['opensearch:totalResults']
         }
     })
 }
 
 export const fetchAlbum = (artist, album) => async (dispatch) => {
-    const response = await mainService.fetchAlbumInfo(artist, album);
+    const responseAlbum = await mainService.fetchAlbumInfo(artist, album);
+    const responseSimilar = await mainService.fetchSimilarArtists(artist);
     dispatch({
         type: 'FETCH_ALBUM_INFO',
         data: {
-            albums: response.data.album,
+            albumData: {
+                album: responseAlbum.data.album,
+                similarArtists: responseSimilar.data.similarartists.artist
+            },
             count: 1
         }
     })
