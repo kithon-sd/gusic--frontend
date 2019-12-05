@@ -4,9 +4,11 @@ import thunk from 'redux-thunk';
 
 import paginationReducer from './reducers/paginationReducer';
 import albumListReducer from './reducers/albumListReducer';
+import artistReducer from './reducers/artistReducer';
 
 const reducer = combineReducers({
-    data: albumListReducer,
+    data: albumListReducer, // rewrite into albumdata
+    artist: artistReducer,
     pagination: paginationReducer
 })
 

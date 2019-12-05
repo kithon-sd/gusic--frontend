@@ -31,8 +31,18 @@ const fetchSimilarArtists = async (artist, limit) => {
     return response
 }
 
+const fetchArtistInfo = async (artist) => {
+    const response = await axios.get(`${url}/api/artistInfo`, {
+        params: {
+            artist: artist
+        }
+    })
+    return response
+}
+
 export default  { 
     findAlbums,
     fetchAlbumInfo,
-    fetchSimilarArtists
+    fetchSimilarArtists,
+    fetchArtistInfo
 }

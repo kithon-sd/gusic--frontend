@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
 
 import Search from './Search'
-import { resetAlbums } from '../reducers/albumListReducer'
 
-const Main = (props) => {
+const Main = () => {
     const [query, setQuery] = useState('')
     const [redirect, setRedirect] = useState(false)
-
-    useEffect(() => {
-        props.resetAlbums()
-    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -36,7 +30,4 @@ const Main = (props) => {
     )
 }
 
-export default connect(
-    null,
-    {resetAlbums}
-)(Main)
+export default Main

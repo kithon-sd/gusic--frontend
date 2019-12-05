@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 
-import { findAlbums } from '../reducers/albumListReducer'
+import { findAlbums, resetAlbums } from '../reducers/albumListReducer'
 
 const SearchForm = (props) => {
     const { albums } = props
@@ -11,6 +11,9 @@ const SearchForm = (props) => {
 
     useEffect(() => {
         props.findAlbums(query)
+        return function cleanUp() {
+           props.resetAlbums()
+        }
     }, [])
 
 
@@ -34,7 +37,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    findAlbums
+    findAlbums,
+    resetAlbums
 }
 
 export default connect(
