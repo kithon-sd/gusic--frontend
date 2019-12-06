@@ -5,6 +5,11 @@ import { fetchAlbum } from '../reducers/albumListReducer'
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
     const { album, similarArtists } = props
+
+    const trimLastFmDescription = (str) => {
+        const index = str.indexOf('<a href')
+        return str.slice(0, index)
+    }
     
     useEffect(() => {
         props.fetchAlbum(albumArtist, albumName)
@@ -20,7 +25,7 @@ const Album = (props) => {
             </div>
 
             {album.wiki ?
-            <p>{album.wiki.summary}</p>
+            <p>{trimLastFmDescription(album.wiki.summary)}</p>
             : <p>No description available for this album</p>
             }
 

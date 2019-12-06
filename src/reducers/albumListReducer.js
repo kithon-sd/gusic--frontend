@@ -18,8 +18,8 @@ const albumListReducer = ( state = initialState, action ) => {
     }
 }
 
-export const findAlbums = (query, offset) => async (dispatch) => {
-    const response = await mainService.findAlbums(query, offset);
+export const findAlbums = (query, page = 1, limit = 9) => async (dispatch) => {
+    const response = await mainService.findAlbums(query, page, limit);
     dispatch({
         type: 'FIND',
         data: {
