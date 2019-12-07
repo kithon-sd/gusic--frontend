@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAlbum } from '../reducers/albumListReducer'
 
@@ -55,7 +56,9 @@ const Album = (props) => {
             <ul>
                 {similarArtists.map(artist => (
                     <li key={artist.url}>
-                        {artist.name}
+                        <Link to={`/music/${artist.name}`} >
+                            {artist.name}
+                        </Link>
                     </li>
                 ))}
             </ul>

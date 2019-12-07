@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { fetchArtistInfo, fetchArtistTopAlbums } from '../reducers/artistReducer'
@@ -16,7 +17,7 @@ const Artist = (props) => {
         props.fetchArtistTopAlbums(artist)
     }, [])
 
-    if ( !props.artistData.bio ) return <h2>Loading..</h2>    
+    if ( !props.artistData.bio  || !props.artistTopAlbums ) return <h2>Loading..</h2>    
     return (
         <div>
             <h1>{ artist }</h1>
@@ -31,7 +32,9 @@ const Artist = (props) => {
                 <ul>
                     {props.artistTopAlbums.map(album => (
                         <li key={album.url}>
-                            {album.name}
+                            <Link to={`/music/${artist}/${album.name}`}>
+                                {album.name}
+                            </Link>
                         </li>
                     ))}
                 </ul>
