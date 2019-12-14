@@ -11,6 +11,10 @@ const Album = (props) => {
         const index = str.indexOf('<a href')
         return str.slice(0, index)
     }
+
+    const handleClick = () => {
+        console.log('fuck verdy')
+    }
     
     useEffect(() => {
         props.fetchAlbum(albumArtist, albumName)
@@ -47,6 +51,7 @@ const Album = (props) => {
                     {album.tracks.track.map(track => (
                         <li key={track.url}>
                             {track.name}
+                            <button onClick={handleClick}>Add to favorites</button>
                         </li>
                     ))}
                 </ul>

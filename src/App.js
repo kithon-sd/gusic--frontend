@@ -5,6 +5,7 @@ import Main from './components/Main'
 import SearchForm from './components/SearchForm'
 import Album from './components/Album'
 import Artist from './components/Artist'
+import Auth from './components/Auth';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Route path='/search' component={SearchForm} />
       <Route path='/music/:albumArtist/:albumName' component={Album} />
       <Route exact path='/music/:artist' component={Artist} />
+      <Route path='/auth' component={Auth} />
     </Router>
   )
 }
