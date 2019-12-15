@@ -1,26 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import queryString from 'query-string'
 import axios from 'axios'
 
 const Auth = (props) => {
+    const [redirect, setRedirect] = useState(false)
 
     const token = queryString.parse(props.location.search).token
-    localStorage.setItem('lastfmToken', token)
-    const token_test = localStorage.getItem('lastfmToken')
-    console.log(token_test)
 
     const foo = async token => {
-        const response = await axios.get('http://localhost:3003/api/user/getSessionKey', {
-            params: {
-                token: token
-            }
-        })
-        console.log(response.data)
+        try {
+            const response = await axios.get('http://localhost:3003/api/user/getSessionKey', {
+                params: {
+                    token: token
+                }
+            })
+            console.log(response.data)
+            window.localStorage.setItem('gusic_loginName', response.data.session.name)
+            window.localStorage.setItem('gusic_sessionKey', response.data.session.key)
+            setRedirect(true)
+        }   
+        catch(err) {
+            console.error(err)
+        }
     }
 
     useEffect(() => {
-        foo(token_test)
+        foo(token)
     }, [])
+
+    if (redirect) return <Redirect to='/' />
 
     return (
         <h1>Loading...</h1>

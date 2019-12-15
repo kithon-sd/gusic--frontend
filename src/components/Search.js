@@ -9,9 +9,12 @@ const Search = (props) => {
     } = props
 
     const handleClick = async (e) => {
-        const response = await axios.get('http://localhost:3003/api/user/fetchKey')
+        const response = await axios.get('http://localhost:3003/api/user/fetchApiKey')
         window.location = `http://last.fm/api/auth/?api_key=${response.data.key}&cb=http://localhost:3000/auth`
     }
+
+    const loginName = window.localStorage.getItem('gusic_loginName')
+    const sessionKey = window.localStorage.getItem('gusic_sessionKey')
 
     return (
         <div>
@@ -22,8 +25,12 @@ const Search = (props) => {
             placeholder='Enter an album title'
             />
         </form>
-        <button onClick={handleClick}>test</button>
+        { loginName ? 
+            <p>Logged in as {loginName}</p>
+            : <button onClick={handleClick}>Log in with last.fm </button>
+        }
         </div>
+
     )
 }
 

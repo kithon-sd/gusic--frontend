@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAlbum } from '../reducers/albumListReducer'
+import axios from 'axios'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
@@ -12,8 +13,25 @@ const Album = (props) => {
         return str.slice(0, index)
     }
 
-    const handleClick = () => {
-        console.log('fuck verdy')
+    const sessionKey = window.localStorage.getItem('gusic_sessionKey')
+
+    const handleClick = async (artist, track) => {
+        console.log(`${artist} ${track} ${sessionKey}`)
+        try {
+            const response = await axios({
+                method: 'post',
+                url: 'http://localhost:3003/api/track/addFavorite',
+                data: {
+                    artist: artist,
+                    track: track,
+                    sessionKey: sessionKey
+                }
+            })
+            console.log(response.data)
+        }
+        catch(err) {
+            console.error(err.response)
+        }
     }
     
     useEffect(() => {
@@ -51,7 +69,7 @@ const Album = (props) => {
                     {album.tracks.track.map(track => (
                         <li key={track.url}>
                             {track.name}
-                            <button onClick={handleClick}>Add to favorites</button>
+                            <button onClick={() => handleClick(albumArtist, track.name)}>Add to favorites</button>
                         </li>
                     ))}
                 </ul>
