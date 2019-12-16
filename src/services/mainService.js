@@ -1,9 +1,10 @@
 import axios from 'axios'
+const sessionKey = window.localStorage.getItem('gusic_sessionKey')
 
 const url = 'http://localhost:3003'
 
 const findAlbums = async (query, page, limit) => {
-    const response = await axios.get(url, {
+    const response = await axios.get(`${url}/api/album/search`, {
         params: {
             query: query,
             page: page,
@@ -14,7 +15,7 @@ const findAlbums = async (query, page, limit) => {
 }
 
 const fetchAlbumInfo = async (artist, album) => {
-    const response = await axios.get(`${url}/api/album/info`, {
+    const response = await axios.get(`${url}/api/album/getInfo`, {
         params: {
             artist: artist,
             album: album
@@ -24,7 +25,7 @@ const fetchAlbumInfo = async (artist, album) => {
 }
 
 const fetchSimilarArtists = async (artist, limit) => {
-    const response = await axios.get(`${url}/api/album/similarArtists`, {
+    const response = await axios.get(`${url}/api/artist/getSimilar`, {
         params: {
             artist: artist,
             limit: limit
@@ -34,7 +35,7 @@ const fetchSimilarArtists = async (artist, limit) => {
 }
 
 const fetchArtistInfo = async (artist) => {
-    const response = await axios.get(`${url}/api/artist/info`, {
+    const response = await axios.get(`${url}/api/artist/getInfo`, {
         params: {
             artist: artist
         }
@@ -43,7 +44,7 @@ const fetchArtistInfo = async (artist) => {
 }
 
 const fetchArtistTopAlbums = async (artist, page, limit) => {
-    const response = await axios.get(`${url}/api/artist/topAlbums`, {
+    const response = await axios.get(`${url}/api/artist/getTopAlbums`, {
         params: {
             artist: artist,
             limit: limit,
@@ -51,6 +52,22 @@ const fetchArtistTopAlbums = async (artist, page, limit) => {
         }
     })
     return response
+}
+
+const addLovedTrack = async (artist, track) => {
+    try {
+        const response = await axios.post(`${url}/api/track/love`, {
+            data: {
+                artist: artist,
+                track: track,
+                sessionKey: sessionKey
+            }
+        })
+
+    }
+    catch(err) {
+        alert(err.response)
+    }
 }
 
 export default  { 

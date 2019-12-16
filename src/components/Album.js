@@ -16,18 +16,17 @@ const Album = (props) => {
     const sessionKey = window.localStorage.getItem('gusic_sessionKey')
 
     const handleClick = async (artist, track) => {
-        console.log(`${artist} ${track} ${sessionKey}`)
         try {
             const response = await axios({
                 method: 'post',
-                url: 'http://localhost:3003/api/track/addFavorite',
+                url: 'http://localhost:3003/api/track/love',
                 data: {
                     artist: artist,
                     track: track,
                     sessionKey: sessionKey
                 }
             })
-            console.log(response.data)
+            if (response.status === 200) console.log(`${track} added to Loved Tracks on last.fm!`)
         }
         catch(err) {
             console.error(err.response)

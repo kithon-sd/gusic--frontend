@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 const Search = (props) => {
@@ -8,13 +8,17 @@ const Search = (props) => {
         query
     } = props
 
+    const [loginName, setLoginName] = useState(window.localStorage.getItem('gusic_loginName'))
+
     const handleClick = async (e) => {
         const response = await axios.get('http://localhost:3003/api/user/fetchApiKey')
         window.location = `http://last.fm/api/auth/?api_key=${response.data.key}&cb=http://localhost:3000/auth`
     }
 
-    const loginName = window.localStorage.getItem('gusic_loginName')
-    const sessionKey = window.localStorage.getItem('gusic_sessionKey')
+    const handleLogOut = () => {
+        window.localStorage.removeItem('gusic_loginName')
+        setLoginName(null)
+    }
 
     return (
         <div>
@@ -25,9 +29,9 @@ const Search = (props) => {
             placeholder='Enter an album title'
             />
         </form>
-        { loginName ? 
-            <p>Logged in as {loginName}</p>
-            : <button onClick={handleClick}>Log in with last.fm </button>
+        { loginName ?  
+        <button onClick={handleLogOut}>log Out</button> 
+        : <button onClick={handleClick}>Log in with last.fm </button>
         }
         </div>
 
