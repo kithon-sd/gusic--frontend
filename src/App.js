@@ -6,6 +6,7 @@ import SearchForm from './components/SearchForm'
 import Album from './components/Album'
 import Artist from './components/Artist'
 import Auth from './components/Auth';
+import Backlog from './components/Backlog'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Route path='/music/:albumArtist/:albumName' component={Album} />
       <Route exact path='/music/:artist' component={Artist} />
       <Route path='/auth' component={Auth} />
+      <Route path='/backlog' component={Backlog} />
     </Router>
   )
 }

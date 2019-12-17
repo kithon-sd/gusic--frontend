@@ -54,7 +54,7 @@ const fetchArtistTopAlbums = async (artist, page, limit) => {
     return response
 }
 
-const addLovedTrack = async (artist, track) => {
+export const addLovedTrack = async (artist, track, sessionKey) => {
     try {
         const response = await axios.post(`${url}/api/track/love`, {
             data: {
@@ -63,10 +63,10 @@ const addLovedTrack = async (artist, track) => {
                 sessionKey: sessionKey
             }
         })
-
+        return response.status
     }
     catch(err) {
-        alert(err.response)
+        return(err.response)
     }
 }
 
@@ -75,5 +75,6 @@ export default  {
     fetchAlbumInfo,
     fetchSimilarArtists,
     fetchArtistInfo,
-    fetchArtistTopAlbums
+    fetchArtistTopAlbums,
+    addLovedTrack
 }

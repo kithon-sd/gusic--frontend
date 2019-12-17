@@ -2,35 +2,22 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAlbum } from '../reducers/albumListReducer'
-import axios from 'axios'
+import { addLovedTrack } from '../services/mainService'
+import { 
+    trimLastFmDescription,
+    addAlbumToBacklog
+} from '../services/helper'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
     const { album, similarArtists } = props
 
-    const trimLastFmDescription = (str) => {
-        const index = str.indexOf('<a href')
-        return str.slice(0, index)
-    }
-
-    const sessionKey = window.localStorage.getItem('gusic_sessionKey')
-
     const handleClick = async (artist, track) => {
-        try {
-            const response = await axios({
-                method: 'post',
-                url: 'http://localhost:3003/api/track/love',
-                data: {
-                    artist: artist,
-                    track: track,
-                    sessionKey: sessionKey
-                }
-            })
-            if (response.status === 200) console.log(`${track} added to Loved Tracks on last.fm!`)
-        }
-        catch(err) {
-            console.error(err.response)
-        }
+        const sessionKey = window.localStorage.getItem('gusic_sessionKey')
+
+        const response = await addLovedTrack(artist, track, sessionKey)
+        response === 200 ? console.log(`Added ${track} to Loved on lastfm`)
+        : console.log(response)
     }
     
     useEffect(() => {
@@ -44,6 +31,7 @@ const Album = (props) => {
             <div>
                 <h1>{album.name}</h1>
                 <h2>{album.artist}</h2>
+                <button onClick={() => addAlbumToBacklog(album.name)}>Add to backlog</button>
             </div>
 
             {album.wiki ?

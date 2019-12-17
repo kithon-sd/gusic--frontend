@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 import Search from './Search'
 
@@ -22,11 +22,14 @@ const Main = () => {
     }} />
 
     return (
-        <Search 
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        query={query}
-        />
+        <div>
+            <Search 
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            query={query}
+            />
+            <Link to='/backlog'>Backlog</Link>
+        </div>
     )
 }
 

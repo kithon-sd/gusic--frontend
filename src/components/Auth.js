@@ -10,7 +10,7 @@ const Auth = (props) => {
 
     const foo = async token => {
         try {
-            const response = await axios.get('http://localhost:3003/api/user/getSessionKey', {
+            const response = await axios.get('http://localhost:3003/api/auth/getSession', {
                 params: {
                     token: token
                 }
