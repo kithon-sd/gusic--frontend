@@ -8,6 +8,8 @@ import Artist from './components/Artist'
 import Auth from './components/Auth';
 import Backlog from './components/Backlog'
 
+import Test from './components/test'
+
 const App = () => {
   return (
     <Router>
@@ -17,6 +19,7 @@ const App = () => {
       <Route exact path='/music/:artist' component={Artist} />
       <Route path='/auth' component={Auth} />
       <Route path='/backlog' component={Backlog} />
+      <Route path='/test' component={Test} />
     </Router>
   )
 }

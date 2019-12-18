@@ -5,15 +5,18 @@ import { fetchAlbum } from '../reducers/albumListReducer'
 import { addLovedTrack } from '../services/mainService'
 import { 
     trimLastFmDescription,
-    addAlbumToBacklog
+    addToBacklog,
+    fetchUserData
 } from '../services/helper'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
     const { album, similarArtists } = props
+    const userName = window.localStorage.getItem('gusic_currentUser')
+    console.log(userName)
 
     const handleClick = async (artist, track) => {
-        const sessionKey = window.localStorage.getItem('gusic_sessionKey')
+        const sessionKey = fetchUserData().currentUserData.sessionKey
 
         const response = await addLovedTrack(artist, track, sessionKey)
         response === 200 ? console.log(`Added ${track} to Loved on lastfm`)
@@ -31,7 +34,10 @@ const Album = (props) => {
             <div>
                 <h1>{album.name}</h1>
                 <h2>{album.artist}</h2>
-                <button onClick={() => addAlbumToBacklog(album.name)}>Add to backlog</button>
+                <button onClick={() => addToBacklog(userName, {
+                    name: album.name,
+                    url: album.url
+                })}>Add to backlog</button>
             </div>
 
             {album.wiki ?
