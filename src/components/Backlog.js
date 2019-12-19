@@ -1,15 +1,32 @@
-import React from 'react'
-import { generateBacklogList } from '../services/helper'
+import React, {useState} from 'react'
+import BacklogList from './BacklogList'
+import {
+    removeFromBacklog,
+    fetchUserData
+} from '../services/helper'
 
 const Backlog = () => {
-    const currentUser = window.localStorage.getItem('gusic_currentUser')
+    const {
+        currentUser,
+        currentUserData
+    } = fetchUserData()
+    
+    const [backlog, setBacklog] = useState(currentUserData.backlog)
+
+    const handleClick = (name, title) => {
+        removeFromBacklog(name, title)
+    }
 
     const foo = () => {
         if (currentUser) {
             return (
                 <div>
                     <h2>Backlog for {currentUser}</h2>
-                    {generateBacklogList()}
+                    <BacklogList 
+                    removeFromBacklog={handleClick} 
+                    backlog={backlog} 
+                    currentUser={currentUser} 
+                    />
                 </div>
             )
         } else {

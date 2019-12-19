@@ -15,10 +15,6 @@ const BacklogList = (props) => {
         setBacklogData(newBacklog)
     }
 
-    const checkBacklog = (name, title) => {
-        return backlogData.find(i => i.title === title)
-    }
-
     return (
         <ul>
             {backlogData.map(album => (

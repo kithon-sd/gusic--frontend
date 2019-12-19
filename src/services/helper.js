@@ -5,26 +5,6 @@ export const trimLastFmDescription = (str) => {
         return str.slice(0, index)
     }
 
-export const generateBacklogList = () => {
-    const currentUser = window.localStorage.getItem('gusic_currentUser')
-    const userData = JSON.parse(window.localStorage.getItem('gusic_userData'))
-    const currentUserData = userData.users.find(user => user.name === currentUser)
-
-    if (!currentUser) return
-
-    if (currentUser && currentUserData.backlog.length === 0) return <h2>Your backlog is currently empty</h2>
-    
-    return (
-        <ul>
-            {currentUserData.backlog.map(album => (
-                <li key={album.url}>
-                    {album.title}
-                </li>
-            ))}
-        </ul>
-    )
-}
-
 export const addUserToData = (name, sessionKey) => {
     const userData = JSON.parse(window.localStorage.getItem('gusic_userData'))
     
@@ -99,7 +79,8 @@ export const addToBacklog = (name, album) => {
                 ...targetUser.backlog,
                 {
                     title: album.name,
-                    url: album.url
+                    url: album.url,
+                    artist: album.artist
                 }
             ]
         }
@@ -116,7 +97,8 @@ export const addToBacklog = (name, album) => {
             backlog: [
                 {
                     title: album.name,
-                    url: album.url
+                    url: album.url,
+                    artist: album.artist
                 }
             ]
         }
@@ -143,4 +125,25 @@ export const fetchUserData = () => {
         currentUser,
         currentUserData
     }
+}
+
+export const removeFromBacklog = (name, album) => {
+    const userData = JSON.parse(window.localStorage.getItem('gusic_userData'))
+    const targetUser = userData.users.find(user => user.name === name)
+    const filteredUserData = userData.users.filter(user => user.name !== name)
+
+    const newTargetUser = {
+        ...targetUser,
+        backlog: targetUser.backlog.filter(i => i.title !== album)
+    }
+
+    const newUserData = {
+        users: [
+            ...filteredUserData,
+            newTargetUser
+        ]
+    }
+    window.localStorage.setItem('gusic_userData', JSON.stringify(newUserData))
+
+    console.log(`${album} removed from backlog of ${name}`)
 }

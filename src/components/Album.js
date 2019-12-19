@@ -1,22 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAlbum } from '../reducers/albumListReducer'
 import { addLovedTrack } from '../services/mainService'
 import { 
     trimLastFmDescription,
-    addToBacklog,
-    fetchUserData
+    fetchUserData,
 } from '../services/helper'
+import BacklogButton from './BacklogButton'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
     const { album, similarArtists } = props
-    const userName = window.localStorage.getItem('gusic_currentUser')
-    console.log(userName)
+    const {
+        currentUser,
+        currentUserData
+    } = fetchUserData()
+
+    const [render, setRender] = useState(false)
+    const forceRender = () => {
+        setRender(!render)
+    }
+
+    const checkBacklog = (album) => {
+        return currentUserData.backlog.find(i => i.title === album)
+    }
 
     const handleClick = async (artist, track) => {
-        const sessionKey = fetchUserData().currentUserData.sessionKey
+        const sessionKey = currentUserData.sessionKey
 
         const response = await addLovedTrack(artist, track, sessionKey)
         response === 200 ? console.log(`Added ${track} to Loved on lastfm`)
@@ -34,10 +45,25 @@ const Album = (props) => {
             <div>
                 <h1>{album.name}</h1>
                 <h2>{album.artist}</h2>
-                <button onClick={() => addToBacklog(userName, {
+
+                {checkBacklog(album.name) ?
+                <BacklogButton 
+                type='REMOVE'
+                currentUser={currentUser}
+                album={album.name}
+                render={forceRender}
+                 />
+                :<BacklogButton
+                type='ADD'
+                currentUser={currentUser}
+                album={{
                     name: album.name,
-                    url: album.url
-                })}>Add to backlog</button>
+                    url: album.url,
+                    artist: album.artist
+                }}
+                render={forceRender}
+                />
+                }
             </div>
 
             {album.wiki ?
