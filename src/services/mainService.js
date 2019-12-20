@@ -54,19 +54,49 @@ const fetchArtistTopAlbums = async (artist, page, limit) => {
     return response
 }
 
-export const addLovedTrack = async (artist, track, sessionKey) => {
+export const addToLoved = async (sessionKey, data) => {
     try {
         const response = await axios.post(`${url}/api/track/love`, {
             data: {
-                artist: artist,
-                track: track,
+                artist: data.artist,
+                track: data.track,
                 sessionKey: sessionKey
             }
         })
         return response.status
     }
     catch(err) {
-        return(err.response)
+        return err.response
+    }
+}
+
+export const removeFromLoved = async (sessionKey, data) => {
+    try {
+        const response = await axios.post(`${url}/api/track/unlove`, {
+            data: {
+                artist: data.artist,
+                track: data.track,
+                sessionKey: sessionKey
+            }
+        })
+        return response.status
+    }
+    catch(err) {
+        return err.response
+    }
+}
+
+export const getLovedTracks = async (user) => {
+    try {
+        const response = await axios.get(`${url}/api/user/getLovedTracks`, {
+            params: {
+                user: user
+            }
+        })
+        return response.data
+    }
+    catch(err) {
+        console.error(err)
     }
 }
 
@@ -76,5 +106,7 @@ export default  {
     fetchSimilarArtists,
     fetchArtistInfo,
     fetchArtistTopAlbums,
-    addLovedTrack
+    addToLoved,
+    removeFromLoved,
+    getLovedTracks
 }

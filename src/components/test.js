@@ -1,34 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
+import axios from 'axios'
 
-const BacklogList = (props) => {
-    const {
-        backlog,
-        removeFromBacklog,
-        currentUser
-    } = props
-
-    const [backlogData, setBacklogData] = useState(backlog)
-
-    const handleClick = (name, title) => {
-        removeFromBacklog(name, title)
-        const newBacklog = backlogData.filter(album => album.title !== title)
-        setBacklogData(newBacklog)
-    }
-
-    const checkBacklog = (name, title) => {
-        return backlogData.find(i => i.title === title)
+const Test = () => {
+    const handleClick = async () => {
+        const response = await axios.get('http://localhost:3003/api/user/getLovedTracks', {
+            params: {
+                user: 'kithon-fw'
+            }
+        })
+        console.log(response.data)
     }
 
     return (
-        <ul>
-            {backlogData.map(album => (
-                <li key={album.url}>
-                    {album.artist} - {album.title}
-                    <button onClick={() => handleClick(currentUser, album.title)}>Remove from backlog</button>
-                </li>
-            ))}
-        </ul>
+        <button onClick={handleClick}>Test button</button>
     )
 }
 
-export default BacklogList
+export default Test

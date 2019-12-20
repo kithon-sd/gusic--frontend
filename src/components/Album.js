@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAlbum } from '../reducers/albumListReducer'
-import { addLovedTrack } from '../services/mainService'
 import { 
     trimLastFmDescription,
     fetchUserData,
 } from '../services/helper'
 import BacklogButton from './BacklogButton'
+import Tracklist from './Tracklist'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
@@ -24,14 +24,6 @@ const Album = (props) => {
 
     const checkBacklog = (album) => {
         return currentUserData.backlog.find(i => i.title === album)
-    }
-
-    const handleClick = async (artist, track) => {
-        const sessionKey = currentUserData.sessionKey
-
-        const response = await addLovedTrack(artist, track, sessionKey)
-        response === 200 ? console.log(`Added ${track} to Loved on lastfm`)
-        : console.log(response)
     }
     
     useEffect(() => {
@@ -84,14 +76,10 @@ const Album = (props) => {
 
             <div>
                 <h3>Tracklist</h3>
-                <ul>
-                    {album.tracks.track.map(track => (
-                        <li key={track.url}>
-                            {track.name}
-                            <button onClick={() => handleClick(albumArtist, track.name)}>Add to favorites</button>
-                        </li>
-                    ))}
-                </ul>
+                <Tracklist
+                currentUser={currentUser}
+                tracklist={album.tracks.track}
+                />
             </div>
 
             <h3>Similar artists</h3>
