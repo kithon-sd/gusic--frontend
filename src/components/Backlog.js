@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React  from 'react'
 import BacklogList from './BacklogList'
 import {
     removeFromBacklog,
@@ -10,8 +10,6 @@ const Backlog = () => {
         currentUser,
         currentUserData
     } = fetchUserData()
-    
-    const [backlog, setBacklog] = useState(currentUserData.backlog)
 
     const handleClick = (name, title) => {
         removeFromBacklog(name, title)
@@ -22,11 +20,15 @@ const Backlog = () => {
             return (
                 <div>
                     <h2>Backlog for {currentUser}</h2>
+                    {currentUserData.backlog.length === 0 ? 
+                    <h3>Your backlog is currently empty</h3>
+                    :
                     <BacklogList 
                     removeFromBacklog={handleClick} 
-                    backlog={backlog} 
+                    backlog={currentUserData.backlog} 
                     currentUser={currentUser} 
                     />
+                    }       
                 </div>
             )
         } else {

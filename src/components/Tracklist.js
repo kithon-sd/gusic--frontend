@@ -1,31 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import LovedButton from './LovedButton'
 import { getLovedTracks } from '../services/mainService'
 
 const Tracklist = (props) => {
     const {
         tracklist,
-        currentUser
+        currentUser,
     } = props
-
-    const [render, setRender] = useState(false)
-    const forceRender = () => {
-        setRender(!render)
-    }
+    
     const [lovedTracksData, setLovedData] = useState([])
 
-    useEffect(() => {
-        const lovedTracks = async (user) => {
-            const response = await getLovedTracks(user)
-            setLovedData(response.lovedtracks.track)
-        }
-        lovedTracks(currentUser)
-    }, [])
+    const fetchLovedTracks = async user => {
+        const response = await getLovedTracks(user)
+        setLovedData(response.lovedtracks.track)
+    }
+
+    useLayoutEffect(() => {
+        fetchLovedTracks(currentUser)
+    }, [currentUser])
 
     const checkLoved = (track) => {
-        return lovedTracksData.find(i => i.name === track)
+         return lovedTracksData.find(i => i.name === track)
     }
-    console.log(lovedTracksData)
+
+    const add = (track) => {
+        setLovedData([...lovedTracksData, track])
+    }
+
+    const remove = (track) => {
+        setLovedData(lovedTracksData.filter(i => i.name !== track.name))
+    }
+    
     return (
         <ul>
             {tracklist.map(track => (
@@ -33,20 +38,18 @@ const Tracklist = (props) => {
                     {track.name}
 
                     {checkLoved(track.name) ? 
-                    <LovedButton 
+                    <LovedButton
+                    request={remove}
                     type='REMOVE'
-                    render={forceRender}
                     data={{
-                        artist: track.artist,
-                        track: track.name
+                        track: track
                     }}
                     />
                     : <LovedButton
+                    request={add}
                     type='ADD'
-                    render={forceRender}
                     data={{
-                        artist: track.artist,
-                        track: track.name
+                        track: track
                     }}
                     />
                 }

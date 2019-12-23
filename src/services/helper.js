@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const trimLastFmDescription = (str) => {
         const index = str.indexOf('<a href')
         return str.slice(0, index)

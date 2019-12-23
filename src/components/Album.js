@@ -11,7 +11,11 @@ import Tracklist from './Tracklist'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
-    const { album, similarArtists } = props
+    const { 
+        album,
+        similarArtists,
+        fetchAlbum,
+     } = props
     const {
         currentUser,
         currentUserData
@@ -27,8 +31,8 @@ const Album = (props) => {
     }
     
     useEffect(() => {
-        props.fetchAlbum(albumArtist, albumName)
-    }, [])
+        fetchAlbum(albumArtist, albumName)
+    }, [albumArtist, albumName, fetchAlbum, currentUser])
 
     if (!album) return <h2>Loading...</h2>
 

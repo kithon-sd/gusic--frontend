@@ -28,7 +28,7 @@ const Auth = (props) => {
 
     useEffect(() => {
         foo(token)
-    }, [])
+    }, [token])
 
     if (redirect) return <Redirect to='/' />
 

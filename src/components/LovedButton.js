@@ -10,17 +10,17 @@ const LovedButton = (props) => {
     const {
         type,
         data,
-        render
+        request
     } = props
     const sessionKey = fetchUserData().currentUserData.sessionKey
 
     if (type === 'REMOVE') {
         const handleClick = (sessionKey, data) => {
             removeFromLoved(sessionKey, {
-                artist: data.artist,
-                track: data.track
+                artist: data.track.artist.name,
+                track: data.track.name
             })
-            render()
+            request(data.track)
         }
         return (
             <button onClick={() => handleClick(sessionKey, data)}>Remove from Loved</button>
@@ -30,10 +30,10 @@ const LovedButton = (props) => {
     if (type === 'ADD') {
         const handleClick = (sessionKey, data) => {
             addToLoved(sessionKey, {
-                artist: data.artist,
-                track: data.track
+                artist: data.track.artist.name,
+                track: data.track.name
             })
-            render()
+            request(data.track)
         }
         return (
             <button onClick={() => handleClick(sessionKey, data)}>Add to Loved</button>

@@ -6,6 +6,10 @@ import { fetchArtistInfo, fetchArtistTopAlbums } from '../reducers/artistReducer
 
 const Artist = (props) => {
     const { artist }  = props.match.params
+    const {
+        fetchArtistInfo,
+        fetchArtistTopAlbums
+    } = props
 
     const trimLastFmDescription = (str) => {
         const index = str.indexOf('<a href')
@@ -13,9 +17,9 @@ const Artist = (props) => {
     }
 
     useEffect(() => {
-        props.fetchArtistInfo(artist)
-        props.fetchArtistTopAlbums(artist)
-    }, [])
+        fetchArtistInfo(artist)
+        fetchArtistTopAlbums(artist)
+    }, [artist, fetchArtistInfo, fetchArtistTopAlbums])
 
     if ( !props.artistData.bio  || !props.artistTopAlbums ) return <h2>Loading..</h2>    
     return (

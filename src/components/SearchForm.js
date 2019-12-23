@@ -6,15 +6,20 @@ import queryString from 'query-string'
 import { findAlbums, resetAlbums } from '../reducers/albumListReducer'
 
 const SearchForm = (props) => {
-    const { albums } = props
+    const { 
+        albums,
+        findAlbums,
+        resetAlbums
+     } = props
     const query = queryString.parse(props.location.search).query
 
+
     useEffect(() => {
-        props.findAlbums(query)
+        findAlbums(query)
         return function cleanUp() {
-           props.resetAlbums()
+           resetAlbums()
         }
-    }, [])
+    }, [query, findAlbums, resetAlbums])
 
 
     return (

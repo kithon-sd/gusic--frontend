@@ -1,5 +1,4 @@
 import axios from 'axios'
-const sessionKey = window.localStorage.getItem('gusic_sessionKey')
 
 const url = 'http://localhost:3003'
 
