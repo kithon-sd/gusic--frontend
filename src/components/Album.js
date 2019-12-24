@@ -8,6 +8,7 @@ import {
 } from '../services/helper'
 import BacklogButton from './BacklogButton'
 import Tracklist from './Tracklist'
+import Notification from './Notification'
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
@@ -21,9 +22,29 @@ const Album = (props) => {
         currentUserData
     } = fetchUserData()
 
+    const [notificationData, setNotificationData] = useState({
+        show: false,
+        type: '',
+        album: ''
+    })
     const [render, setRender] = useState(false)
     const forceRender = () => {
         setRender(!render)
+    }
+
+    const handleNotification = (type, data) => {
+        setNotificationData({
+            show: true,
+            type: type,
+            data: data
+        })
+        setTimeout(() => {
+            setNotificationData({
+                show: false,
+                type: '',
+                data: null
+            })
+        }, 3000)
     }
 
     const checkBacklog = (album) => {
@@ -38,6 +59,7 @@ const Album = (props) => {
 
     return (
         <div>
+            {notificationData.show && <Notification notificationData={notificationData} />}
             <div>
                 <h1>{album.name}</h1>
                 <h2>{album.artist}</h2>
@@ -48,6 +70,7 @@ const Album = (props) => {
                 currentUser={currentUser}
                 album={album.name}
                 render={forceRender}
+                handleNotification={handleNotification}
                  />
                 :<BacklogButton
                 type='ADD'
@@ -58,6 +81,7 @@ const Album = (props) => {
                     artist: album.artist
                 }}
                 render={forceRender}
+                handleNotification={handleNotification}
                 />
                 }
             </div>
@@ -82,6 +106,7 @@ const Album = (props) => {
                 <h3>Tracklist</h3>
                 <Tracklist
                 currentUser={currentUser}
+                handleNotification={handleNotification}
                 tracklist={album.tracks.track}
                 />
             </div>

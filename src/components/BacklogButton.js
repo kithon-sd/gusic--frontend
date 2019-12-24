@@ -10,13 +10,15 @@ const BacklogButton = (props) => {
         type,
         currentUser,
         album,
-        render
+        render,
+        handleNotification
     } = props
 
 
     if (type === 'REMOVE') {
         const handleClick = (name, album) => {
             removeFromBacklog(name, album)
+            handleNotification('REMOVE_ALBUM', album)
             render()
         }
         return (
@@ -32,6 +34,7 @@ const BacklogButton = (props) => {
                 artist: album.artist,
                 url: album.url
             })
+            handleNotification('ADD_ALBUM', album.name)
             render()
         }
 

@@ -10,7 +10,8 @@ const LovedButton = (props) => {
     const {
         type,
         data,
-        request
+        request,
+        handleNotification
     } = props
     const sessionKey = fetchUserData().currentUserData.sessionKey
 
@@ -21,6 +22,7 @@ const LovedButton = (props) => {
                 track: data.track.name
             })
             request(data.track)
+            handleNotification('REMOVE_TRACK', data.track.name)
         }
         return (
             <button onClick={() => handleClick(sessionKey, data)}>Remove from Loved</button>
@@ -34,6 +36,7 @@ const LovedButton = (props) => {
                 track: data.track.name
             })
             request(data.track)
+            handleNotification('ADD_TRACK', data.track.name)
         }
         return (
             <button onClick={() => handleClick(sessionKey, data)}>Add to Loved</button>

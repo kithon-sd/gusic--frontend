@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const BacklogList = (props) => {
     const {
@@ -18,9 +19,11 @@ const BacklogList = (props) => {
     return (
         <ul>
             {backlogData.map(album => (
-                <li key={album.url}>
-                    {album.artist} - {album.title}
-                    <button onClick={() => handleClick(currentUser, album.title)}>Remove from backlog</button>
+                <li key={album.url || album.name}>
+                    <Link to={`/music/${album.artist}/${album.title}`}>
+                        {album.artist} - {album.title}
+                        <button onClick={() => handleClick(currentUser, album.title)}>Remove from backlog</button>
+                    </Link>
                 </li>
             ))}
         </ul>

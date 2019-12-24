@@ -6,6 +6,7 @@ const Tracklist = (props) => {
     const {
         tracklist,
         currentUser,
+        handleNotification
     } = props
     
     const [lovedTracksData, setLovedData] = useState([])
@@ -44,6 +45,7 @@ const Tracklist = (props) => {
                     data={{
                         track: track
                     }}
+                    handleNotification={handleNotification}
                     />
                     : <LovedButton
                     request={add}
@@ -51,6 +53,7 @@ const Tracklist = (props) => {
                     data={{
                         track: track
                     }}
+                    handleNotification={handleNotification}
                     />
                 }
                 </li>
