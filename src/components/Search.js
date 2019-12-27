@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { fetchApiKey } from '../services/mainService'
 
 import { clearCurrentUser } from '../services/helper'
 
@@ -13,8 +13,8 @@ const Search = (props) => {
     const [username, setUsername] = useState(window.localStorage.getItem('gusic_currentUser'))
 
     const handleLogin = async (e) => {
-        const response = await axios.get('http://localhost:3003/api/user/fetchApiKey')
-        window.location = `http://last.fm/api/auth/?api_key=${response.data.key}&cb=http://localhost:3000/auth`
+        const response = await fetchApiKey()
+        window.location = `http://last.fm/api/auth/?api_key=${response.data.key}&cb=${window.location.origin}/auth`
     }
 
     const handleLogout = () => {

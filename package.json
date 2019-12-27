@@ -19,8 +19,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "push": "git push heroku master",
+    "deploy:full": "rd /s build && npm run build && xcopy /s build c:\\dev\\gusic--heroku\\build "
   },
+  "proxy": "http://localhost:3003",
   "eslintConfig": {
     "extends": "react-app"
   },

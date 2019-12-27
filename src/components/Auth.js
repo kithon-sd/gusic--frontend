@@ -4,6 +4,7 @@ import queryString from 'query-string'
 import axios from 'axios'
 
 import userDataManager from '../services/userDataManager'
+import { getSessionKey } from '../services/mainService'
 
 const Auth = (props) => {
     const [redirect, setRedirect] = useState(false)
@@ -12,11 +13,7 @@ const Auth = (props) => {
 
     const foo = async token => {
         try {
-            const response = await axios.get('http://localhost:3003/api/auth/getSession', {
-                params: {
-                    token: token
-                }
-            })
+            const response = await getSessionKey(token)
             console.log(response.data.session)
             userDataManager(response.data.session.name, response.data.session.key)
             setRedirect(true)
