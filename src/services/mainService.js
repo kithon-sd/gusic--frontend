@@ -48,7 +48,7 @@ export const fetchApiKey = async () => {
 }
 
 export const getSessionKey = async (token) => {
-    const response = await axios.get(`${url}/api/user/getSession`, {
+    const response = await axios.get(`${url}/api/auth/getSession`, {
         params: {
             token: token
         }
