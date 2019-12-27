@@ -21,7 +21,7 @@ const Artist = (props) => {
         fetchArtistTopAlbums(artist)
     }, [artist, fetchArtistInfo, fetchArtistTopAlbums])
 
-    if ( !props.artistData.bio  || !props.artistTopAlbums ) return <h2>Loading..</h2>    
+    if ( !props.artistData.bio  || !props.artistTopAlbums || props.match.params.artist !== props.artistData.name ) return <h2>Loading..</h2>    
     return (
         <div>
             <h1>{ artist }</h1>

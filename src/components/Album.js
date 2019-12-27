@@ -58,7 +58,7 @@ const Album = (props) => {
         fetchAlbum(albumArtist, albumName)
     }, [albumArtist, albumName, fetchAlbum, currentUser])
 
-    if (!album) return <h2>Loading...</h2>
+    if (!album || props.match.params.albumName !== album.name) return <h2>Loading..</h2>
 
     return (
         <div>

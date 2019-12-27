@@ -17,7 +17,9 @@ const Tracklist = (props) => {
     }
 
     useLayoutEffect(() => {
-        fetchLovedTracks(currentUser)
+        if (currentUser) {
+            fetchLovedTracks(currentUser)
+        }
     }, [currentUser])
 
     const checkLoved = (track) => {

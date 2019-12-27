@@ -13,7 +13,15 @@ const LovedButton = (props) => {
         request,
         handleNotification
     } = props
-    const sessionKey = fetchUserData().currentUserData.sessionKey
+
+    let sessionKey;
+    if (fetchUserData()) {
+        sessionKey = fetchUserData().currentUserData.sessionKey
+    }
+
+    if (!fetchUserData()) {
+        return <div />
+    }
 
     if (type === 'REMOVE') {
         const handleClick = (sessionKey, data) => {

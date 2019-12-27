@@ -13,6 +13,10 @@ const BacklogButton = (props) => {
         render,
         handleNotification
     } = props
+    
+    if (!currentUser) {
+        return <div />
+    }
 
 
     if (type === 'REMOVE') {
