@@ -6,10 +6,12 @@ import {
 } from '../services/helper'
 
 const Backlog = () => {
-    const {
-        currentUser,
-        currentUserData
-    } = fetchUserData()
+    let currentUser
+    let currentUserData
+    if (fetchUserData()) {
+        currentUser = fetchUserData().currentUser
+        currentUserData = fetchUserData().currentUserData
+    }
 
     const handleClick = (name, title) => {
         removeFromBacklog(name, title)

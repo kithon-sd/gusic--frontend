@@ -17,10 +17,12 @@ const Album = (props) => {
         similarArtists,
         fetchAlbum,
      } = props
-    const {
-        currentUser,
-        currentUserData
-    } = fetchUserData()
+     let currentUser;
+     let currentUserData;
+    if (fetchUserData()) {
+        currentUser = fetchUserData().currentUser
+        currentUserData = fetchUserData().currentUserData
+    }
 
     const [notificationData, setNotificationData] = useState({
         show: false,
@@ -48,6 +50,7 @@ const Album = (props) => {
     }
 
     const checkBacklog = (album) => {
+        if (!currentUserData) return false
         return currentUserData.backlog.find(i => i.title === album)
     }
     
