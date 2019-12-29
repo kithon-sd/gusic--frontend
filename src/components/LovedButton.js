@@ -15,11 +15,11 @@ const LovedButton = (props) => {
     } = props
 
     let sessionKey;
-    if (fetchUserData()) {
+    if (fetchUserData() && fetchUserData().currentUserData) {
         sessionKey = fetchUserData().currentUserData.sessionKey
     }
 
-    if (!fetchUserData()) {
+    if (!fetchUserData() || !fetchUserData().currentUserData) {
         return <div />
     }
 
