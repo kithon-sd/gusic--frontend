@@ -1,9 +1,7 @@
 import axios from 'axios'
 
-const url = ''
-
 export const findAlbums = async (query, page, limit) => {
-    const response = await axios.get(`${url}/api/album/search`, {
+    const response = await axios.get(`/api/album/search`, {
         params: {
             query: query,
             page: page,
@@ -14,7 +12,7 @@ export const findAlbums = async (query, page, limit) => {
 }
 
 export const fetchAlbumInfo = async (artist, album) => {
-    const response = await axios.get(`${url}/api/album/getInfo`, {
+    const response = await axios.get(`/api/album/getInfo`, {
         params: {
             artist: artist,
             album: album
@@ -24,7 +22,7 @@ export const fetchAlbumInfo = async (artist, album) => {
 }
 
 export const fetchSimilarArtists = async (artist, limit) => {
-    const response = await axios.get(`${url}/api/artist/getSimilar`, {
+    const response = await axios.get(`/api/artist/getSimilar`, {
         params: {
             artist: artist,
             limit: limit
@@ -34,7 +32,7 @@ export const fetchSimilarArtists = async (artist, limit) => {
 }
 
 export const fetchArtistInfo = async (artist) => {
-    const response = await axios.get(`${url}/api/artist/getInfo`, {
+    const response = await axios.get(`/api/artist/getInfo`, {
         params: {
             artist: artist
         }
@@ -43,12 +41,12 @@ export const fetchArtistInfo = async (artist) => {
 }
 
 export const fetchApiKey = async () => {
-    const response = await axios.get(`${url}/api/user/fetchApiKey`)
+    const response = await axios.get(`/api/user/fetchApiKey`)
     return response
 }
 
 export const getSessionKey = async (token) => {
-    const response = await axios.get(`${url}/api/auth/getSession`, {
+    const response = await axios.get(`/api/auth/getSession`, {
         params: {
             token: token
         }
@@ -57,7 +55,7 @@ export const getSessionKey = async (token) => {
 }
 
 export const fetchArtistTopAlbums = async (artist, page, limit) => {
-    const response = await axios.get(`${url}/api/artist/getTopAlbums`, {
+    const response = await axios.get(`/api/artist/getTopAlbums`, {
         params: {
             artist: artist,
             limit: limit,
@@ -69,7 +67,7 @@ export const fetchArtistTopAlbums = async (artist, page, limit) => {
 
 export const addToLoved = async (sessionKey, data) => {
     try {
-        const response = await axios.post(`${url}/api/track/love`, {
+        const response = await axios.post(`/api/track/love`, {
             data: {
                 artist: data.artist,
                 track: data.track,
@@ -85,7 +83,7 @@ export const addToLoved = async (sessionKey, data) => {
 
 export const removeFromLoved = async (sessionKey, data) => {
     try {
-        const response = await axios.post(`${url}/api/track/unlove`, {
+        const response = await axios.post(`/api/track/unlove`, {
             data: {
                 artist: data.artist,
                 track: data.track,
@@ -101,7 +99,7 @@ export const removeFromLoved = async (sessionKey, data) => {
 
 export const getLovedTracks = async (user) => {
     try {
-        const response = await axios.get(`${url}/api/user/getLovedTracks`, {
+        const response = await axios.get(`/api/user/getLovedTracks`, {
             params: {
                 user: user
             }

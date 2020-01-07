@@ -22,8 +22,8 @@ const BacklogList = (props) => {
                 <li key={album.url || album.name}>
                     <Link to={`/music/${album.artist}/${album.title}`}>
                         {album.artist} - {album.title}
-                        <button onClick={() => handleClick(currentUser, album.title)}>Remove from backlog</button>
                     </Link>
+                    <button onClick={() => handleClick(currentUser, album.title)}>Remove from backlog</button>
                 </li>
             ))}
         </ul>
