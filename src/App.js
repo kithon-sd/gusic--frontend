@@ -16,8 +16,6 @@ const Wrapper = styled.div`
 height: 100%;
 width: 100%;
 background-color: #1b1b1b;
-margin: 0;
-padding: 0;
 `
 
 const App = () => {

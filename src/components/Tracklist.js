@@ -1,6 +1,11 @@
 import React, { useState, useLayoutEffect } from 'react'
 import LovedButton from './LovedButton'
 import { getLovedTracks } from '../services/mainService'
+import styled from 'styled-components'
+
+const StyledTracklist = styled.ul`
+list-style: none;
+`
 
 const Tracklist = (props) => {
     const {
@@ -35,11 +40,10 @@ const Tracklist = (props) => {
     }
     
     return (
-        <ul>
+        <StyledTracklist>
             {tracklist.map(track => (
                 <li key={track.url || track.mbid}>
-                    {track.name}
-
+                    <span>{track['@attr'].rank}. {track.name}  {track.duration < 60 ? `0:${track.duration}` : `${Math.floor(track.duration / 60)}:${track.duration % 60}`}</span>
                     {checkLoved(track.name) ? 
                     <LovedButton
                     request={remove}
@@ -60,7 +64,7 @@ const Tracklist = (props) => {
                 }
                 </li>
             ))}
-        </ul>
+        </StyledTracklist>
     )
 }
 

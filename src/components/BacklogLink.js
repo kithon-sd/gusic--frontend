@@ -8,6 +8,13 @@ color: #fff;
 `
 
 const BacklogLink = () => {
+    const currentUser = window.localStorage.getItem('gusic_currentUser')
+
+    if (!currentUser) {
+        return (
+            <></>
+        )
+    }
     return (
         <StyledLink to="/backlog">
             Backlog

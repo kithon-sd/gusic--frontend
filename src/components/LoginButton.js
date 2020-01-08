@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import { fetchApiKey } from '../services/mainService'
 import { clearCurrentUser } from '../services/helper'
+
+const StyledLogin = styled.button`
+height: 60%;
+`
 
 const LoginButton = () => {
     const [username, setUsername] = useState(window.localStorage.getItem('gusic_currentUser'))
@@ -18,19 +23,21 @@ const LoginButton = () => {
     const handleLogout = () => {
         clearCurrentUser()
         setUsername('')
+        window.location.reload()
     }
+
     return (
         <>
         {username ? 
            <div>
                <span>{username}</span>
-               <button onClick={handleLogout}>
+               <StyledLogin onClick={handleLogout}>
                    Log out
-               </button>
+               </StyledLogin>
            </div> 
-           : <button onClick={handleLogin}>
+           : <StyledLogin onClick={handleLogin}>
                Log in with last.fm
-           </button>
+           </StyledLogin>
         }
         </>
     )
