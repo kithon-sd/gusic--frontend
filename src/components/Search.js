@@ -1,4 +1,14 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+`
+const SearchBar = styled.input`
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+`
 
 const Search = (props) => {
     const {
@@ -7,16 +17,17 @@ const Search = (props) => {
         query
     } = props
 
+
     return (
-        <div>
+        <Wrapper>
         <form onSubmit={handleSubmit}>
-            <input
+            <SearchBar
             value={query}
             onChange={handleChange}
             placeholder='Enter an album title'
             />
         </form>
-        </div>
+        </Wrapper>
 
     )
 }

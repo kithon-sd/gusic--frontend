@@ -4,7 +4,6 @@ import { fetchApiKey } from '../services/mainService'
 import { clearCurrentUser } from '../services/helper'
 
 const StyledLogin = styled.button`
-height: 60%;
 `
 
 const LoginButton = () => {

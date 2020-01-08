@@ -17,14 +17,21 @@ margin: 0;
 padding: 0;
 `
 
+const Wrapper = styled.div`
+display:flex;
+margin-left: auto;
+`
+
 const Navigation = () => {
     return (
         <Nav>
             <Link to='/'>
                 <img src="https://cdn.discordapp.com/attachments/537353785996083220/664477858319826944/home.jpg" alt="Home"/>
             </Link>
-            <BacklogLink />
-            <LoginButton />
+            <Wrapper>
+                <BacklogLink />
+                <LoginButton />
+            </Wrapper>
         </Nav>
     )
 }
