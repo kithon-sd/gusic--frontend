@@ -1,5 +1,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+
+const StyledLink = styled(Link)`
+color: #aaa;
+text-decoration:none
+&:hover {
+    color: #00e676;
+    text-decoration: underline;
+}
+`
 
 const BacklogList = (props) => {
     const {
@@ -20,9 +31,9 @@ const BacklogList = (props) => {
         <ul>
             {backlogData.map(album => (
                 <li key={album.url || album.name}>
-                    <Link to={`/music/${album.artist}/${album.title}`}>
+                    <StyledLink to={`/music/${encodeURIComponent(album.artist)}/${encodeURIComponent(album.title)}`}>
                         {album.artist} - {album.title}
-                    </Link>
+                    </StyledLink>
                     <button onClick={() => handleClick(currentUser, album.title)}>Remove from backlog</button>
                 </li>
             ))}

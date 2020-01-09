@@ -1,8 +1,19 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import { fetchArtistInfo, fetchArtistTopAlbums } from '../reducers/artistReducer'
+
+
+const StyledLink = styled(Link)`
+color: #aaa;
+text-decoration:none
+&:hover {
+    color: #00e676;
+    text-decoration: underline;
+}
+`
 
 const Artist = (props) => {
     const { artist }  = props.match.params
@@ -36,9 +47,9 @@ const Artist = (props) => {
                 <ul>
                     {props.artistTopAlbums.map(album => (
                         <li key={album.url}>
-                            <Link to={`/music/${artist}/${album.name}`}>
+                            <StyledLink to={`/music/${encodeURIComponent(artist)}/${encodeURIComponent(album.name)}`}>
                                 {album.name}
-                            </Link>
+                            </StyledLink>
                         </li>
                     ))}
                 </ul>

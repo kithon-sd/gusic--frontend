@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
+
 import { fetchAlbum } from '../reducers/albumListReducer'
 import { 
     trimLastFmDescription,
@@ -9,6 +11,16 @@ import {
 import BacklogButton from './BacklogButton'
 import Tracklist from './Tracklist'
 import Notification from './Notification'
+
+
+const StyledLink = styled(Link)`
+color: #aaa;
+text-decoration:none
+&:hover {
+    color: #00e676;
+    text-decoration: underline;
+}
+`
 
 const Album = (props) => {
     const { albumName, albumArtist } = props.match.params
@@ -118,9 +130,9 @@ const Album = (props) => {
             <ul>
                 {similarArtists.map(artist => (
                     <li key={artist.url}>
-                        <Link to={`/music/${artist.name}`} >
+                        <StyledLink to={`/music/${artist.name}`} >
                             {artist.name}
-                        </Link>
+                        </StyledLink>
                     </li>
                 ))}
             </ul>

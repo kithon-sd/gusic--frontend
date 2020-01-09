@@ -2,8 +2,18 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import queryString from 'query-string'
+import styled from 'styled-components'
 
 import { findAlbums, resetAlbums } from '../reducers/albumListReducer'
+
+const StyledLink = styled(Link)`
+color: #aaa;
+text-decoration:none
+&:hover {
+    color: #00e676;
+    text-decoration: underline;
+}
+`
 
 const SearchForm = (props) => {
     const { 
@@ -26,9 +36,9 @@ const SearchForm = (props) => {
         <ul>
             {albums.length > 0 ? albums.map(album => (
                 <li key={album.mbid}>
-                    <Link to={`/music/${album.artist}/${album.name}`}>
+                    <StyledLink to={`/music/${encodeURIComponent(album.artist)}/${encodeURIComponent(album.name)}`}>
                         {album.artist} - {album.name}
-                    </Link>
+                    </StyledLink>
                 </li>
             )) : <h2>Loading..</h2>}
         </ul>

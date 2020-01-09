@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyledLink = styled(Link)`
-text-decoration: none;
-color: #fff;
+color: #6d6d6d;
+text-decoration:none
+&:hover {
+    color: #1b1b1b;
+    text-decoration: underline;
+}
 `
 
 const BacklogLink = () => {
