@@ -36,7 +36,7 @@ const SearchForm = (props) => {
         <ul>
             {albums.length > 0 ? albums.map(album => (
                 <li key={album.mbid}>
-                    <StyledLink to={`/music/${encodeURIComponent(album.artist)}/${encodeURIComponent(album.name)}`}>
+                    <StyledLink to={`/music/${encodeURIComponent(album.artist)}/${encodeURI(album.name)}`}>
                         {album.artist} - {album.name}
                     </StyledLink>
                 </li>

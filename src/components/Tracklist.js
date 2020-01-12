@@ -38,12 +38,22 @@ const Tracklist = (props) => {
     const remove = (track) => {
         setLovedData(lovedTracksData.filter(i => i.name !== track.name))
     }
+
+    const calculateDuration = duration => {
+        const calculateSeconds = s => {
+            return s >= 10 ? `${s}` : `0${s}`
+        }
+        const minutes = duration > 60 ? Math.floor(duration / 60) : 0
+        const seconds = duration % 60
+
+        return `${minutes}:${calculateSeconds(seconds)}`
+    }
     
     return (
         <StyledTracklist>
             {tracklist.map(track => (
                 <li key={track.url || track.mbid}>
-                    <span>{track['@attr'].rank}. {track.name}  {track.duration < 60 ? `0:${track.duration}` : `${Math.floor(track.duration / 60)}:${track.duration % 60}`}</span>
+                    <span>{track['@attr'].rank}. {track.name}  {calculateDuration(track.duration)}</span>
                     {checkLoved(track.name) ? 
                     <LovedButton
                     request={remove}
