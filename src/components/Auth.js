@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import queryString from 'query-string'
-import axios from 'axios'
 
 import userDataManager from '../services/userDataManager'
 import { getSessionKey } from '../services/mainService'

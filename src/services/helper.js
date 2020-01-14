@@ -77,7 +77,7 @@ export const addToBacklog = (name, album) => {
                 ...targetUser.backlog,
                 {
                     title: album.name,
-                    url: album.url,
+                    cover: album.cover,
                     artist: album.artist
                 }
             ]
@@ -95,7 +95,7 @@ export const addToBacklog = (name, album) => {
             backlog: [
                 {
                     title: album.name,
-                    url: album.url,
+                    cover: album.cover,
                     artist: album.artist
                 }
             ]

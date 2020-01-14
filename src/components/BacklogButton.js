@@ -36,7 +36,7 @@ const BacklogButton = (props) => {
             addToBacklog(name, {
                 name: album.name,
                 artist: album.artist,
-                url: album.url
+                cover: album.cover
             })
             handleNotification('ADD_ALBUM', album.name)
             render()
@@ -46,7 +46,7 @@ const BacklogButton = (props) => {
             <button onClick={() => handleClick(currentUser, {
                 name: album.name,
                 artist: album.artist,
-                url: album.url
+                cover: album.cover
             })}>Add to backlog</button>
         )
     }

@@ -72,6 +72,8 @@ const Album = (props) => {
 
     if (!album || props.match.params.albumName !== album.name) return <h2>Loading..</h2>
 
+    const cover = album.image.find(img => img.size === 'large')['#text']
+
     return (
         <div>
             {notificationData.show && <Notification notificationData={notificationData} />}
@@ -92,7 +94,7 @@ const Album = (props) => {
                 currentUser={currentUser}
                 album={{
                     name: album.name,
-                    url: album.url,
+                    cover: cover,
                     artist: album.artist
                 }}
                 render={forceRender}
