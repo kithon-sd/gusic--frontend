@@ -11,7 +11,18 @@ import {
 import BacklogButton from './BacklogButton'
 import Tracklist from './Tracklist'
 import Notification from './Notification'
+import AlbumCard from './AlbumCard'
 
+
+const MainWrapper = styled.div`
+display: flex;
+margin-top: 50px;
+`
+
+
+const DescWrapper = styled.div`
+margin-left: 30px;
+`
 
 const StyledLink = styled(Link)`
 color: #aaa;
@@ -77,11 +88,16 @@ const Album = (props) => {
     return (
         <div>
             {notificationData.show && <Notification notificationData={notificationData} />}
-            <div>
-                <h1>{album.name}</h1>
-                <h2>{album.artist}</h2>
+            <MainWrapper>
+                <AlbumCard cover={cover} name={album.name} artist={album.artist} />
 
-                {checkBacklog(album.name) ?
+            {album.wiki ?
+            <DescWrapper>{trimLastFmDescription(album.wiki.summary)}</DescWrapper>
+            : <DescWrapper>No description available for this album</DescWrapper>
+            }
+            </MainWrapper>
+
+            {checkBacklog(album.name) ?
                 <BacklogButton 
                 type='REMOVE'
                 currentUser={currentUser}
@@ -101,12 +117,6 @@ const Album = (props) => {
                 handleNotification={handleNotification}
                 />
                 }
-            </div>
-
-            {album.wiki ?
-            <p>{trimLastFmDescription(album.wiki.summary)}</p>
-            : <p>No description available for this album</p>
-            }
 
             <div>
                 <h3>Genres</h3>

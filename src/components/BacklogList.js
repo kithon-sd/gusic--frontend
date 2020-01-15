@@ -1,6 +1,18 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 
 import AlbumCard from './AlbumCard'
+
+const StyledButton = styled.button`
+height: 50%;
+margin-top: auto;
+margin-bottom: auto;
+`
+
+const AlbumWrapper = styled.li`
+display: flex;
+`
+
 
 const BacklogList = (props) => {
     const {
@@ -20,10 +32,10 @@ const BacklogList = (props) => {
     return (
         <ul>
             {backlogData.map(album => (
-                <li key={album.url || album.name}>
+                <AlbumWrapper key={album.url || album.name}>
                     <AlbumCard cover={album.cover} name={album.title} artist={album.artist}/>
-                    <button onClick={() => handleClick(currentUser, album.title)}>Remove from backlog</button>
-                </li>
+                    <StyledButton onClick={() => handleClick(currentUser, album.title)}>Remove</StyledButton>
+                </AlbumWrapper>
             ))}
         </ul>
     )

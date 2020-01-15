@@ -10,10 +10,9 @@ const Auth = (props) => {
 
     const token = queryString.parse(props.location.search).token
 
-    const foo = async token => {
+    const setCurrentUser = async token => {
         try {
             const response = await getSessionKey(token)
-            console.log(response.data.session)
             userDataManager(response.data.session.name, response.data.session.key)
             setRedirect(true)
         }   
@@ -23,7 +22,7 @@ const Auth = (props) => {
     }
 
     useEffect(() => {
-        foo(token)
+        setCurrentUser(token)
     }, [token])
 
     if (redirect) return <Redirect to='/' />

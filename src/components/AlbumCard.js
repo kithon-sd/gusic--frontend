@@ -2,10 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
+const Noway = styled.div`
+min-width: 40%;
+`
+
 const CardWrapper = styled.div`
 display: flex;
 border-right: 1px solid #00e676;
-width: 50%
+margin-bottom: 30px;
 `
 
 const AlbumDataWrapper = styled.div`
@@ -43,6 +47,7 @@ const AlbumCard = props => {
     } = props
 
     return (
+        <Noway>
         <CardWrapper>
             <img src={cover} alt={name} />
             <AlbumDataWrapper>
@@ -50,6 +55,7 @@ const AlbumCard = props => {
                 <AlbumArtist to={`/music/${encodeURIComponent(artist)}`}>{artist}</AlbumArtist>
             </AlbumDataWrapper>
         </CardWrapper>
+        </Noway>
     )
 }
 
