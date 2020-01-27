@@ -1,9 +1,22 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import {
     addToBacklog,
     removeFromBacklog
 } from '../services/helper'
+
+const StyledButton = styled.button`
+padding: 5px;
+border: 1px solid #00e676;
+background-color: #424242;
+color: #fff;
+&:hover {
+    border: 1px solid #424242;
+    color: #424242;
+    background-color: #00e676;
+}
+`
 
 const BacklogButton = (props) => {
     const {
@@ -26,7 +39,7 @@ const BacklogButton = (props) => {
             render()
         }
         return (
-            <button onClick={() => handleClick(currentUser, album)}>Remove from backlog</button>
+            <StyledButton onClick={() => handleClick(currentUser, album)}>Remove from backlog</StyledButton>
         )
     }
 
@@ -43,11 +56,11 @@ const BacklogButton = (props) => {
         }
 
         return (
-            <button onClick={() => handleClick(currentUser, {
+            <StyledButton onClick={() => handleClick(currentUser, {
                 name: album.name,
                 artist: album.artist,
                 cover: album.cover
-            })}>Add to backlog</button>
+            })}>Add to backlog</StyledButton>
         )
     }
 }

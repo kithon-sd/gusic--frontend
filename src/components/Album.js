@@ -15,7 +15,9 @@ import AlbumCard from './AlbumCard'
 
 
 const MainWrapper = styled.div`
-display: flex;
+@media (min-width: 1025px) {
+    display: flex;
+}
 margin-top: 50px;
 `
 

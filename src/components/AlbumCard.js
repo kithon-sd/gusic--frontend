@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom'
 
 const Noway = styled.div`
 min-width: 40%;
+@media (max-width: 800px) {
+    width: 100%;
+}
 `
 
-const CardWrapper = styled.div`
+const CardWrapper = styled.div` 
 display: flex;
 border-right: 1px solid #00e676;
 margin-bottom: 30px;
@@ -16,7 +19,8 @@ const AlbumDataWrapper = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
-margin-left: 50px;
+margin-left: 20px;
+margin-right: 20px;
 `
 
 const AlbumName = styled(Link)`
@@ -39,6 +43,10 @@ text-decoration:none
 }
 `
 
+const StyledImg = styled.img`
+height: 100%;
+`
+
 const AlbumCard = props => {
     const {
         cover,
@@ -49,7 +57,7 @@ const AlbumCard = props => {
     return (
         <Noway>
         <CardWrapper>
-            <img src={cover} alt={name} />
+            <StyledImg src={cover} alt={name} />
             <AlbumDataWrapper>
                 <AlbumName to={`/music/${encodeURIComponent(artist)}/${encodeURIComponent(name)}`}>{name}</AlbumName>
                 <AlbumArtist to={`/music/${encodeURIComponent(artist)}`}>{artist}</AlbumArtist>

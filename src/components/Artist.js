@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import { fetchArtistInfo, fetchArtistTopAlbums } from '../reducers/artistReducer'
+import { trimLastFmDescription } from '../services/helper'
+import AlbumCard from './AlbumCard'
 
+const StyledList = styled.ul`
+list-style: none;
+`
 
-const StyledLink = styled(Link)`
-color: #aaa;
-text-decoration:none
-&:hover {
-    color: #00e676;
-    text-decoration: underline;
+const AlbumWrapper = styled.li`
+@media (min-width: 1400px) {
+    width: 40%;
 }
+width: 100%
 `
 
 const Artist = (props) => {
@@ -22,15 +24,12 @@ const Artist = (props) => {
         fetchArtistTopAlbums
     } = props
 
-    const trimLastFmDescription = (str) => {
-        const index = str.indexOf('<a href')
-        return str.slice(0, index)
-    }
-
     useEffect(() => {
         fetchArtistInfo(artist)
         fetchArtistTopAlbums(artist)
     }, [artist, fetchArtistInfo, fetchArtistTopAlbums])
+
+
 
     if ( !props.artistData.bio  || !props.artistTopAlbums || props.match.params.artist !== props.artistData.name ) return <h2>Loading..</h2>    
     return (
@@ -44,15 +43,16 @@ const Artist = (props) => {
 
             <div>
                 <h2>Top albums</h2>
-                <ul>
+                <StyledList>
                     {props.artistTopAlbums.map(album => (
-                        <li key={album.url}>
-                            <StyledLink to={`/music/${encodeURIComponent(artist)}/${encodeURIComponent(album.name)}`}>
-                                {album.name}
-                            </StyledLink>
-                        </li>
+                        <AlbumWrapper key={album.url}>
+                            <AlbumCard 
+                            cover={album.image.find(img => img.size === 'large')['#text']} 
+                            name={album.name} 
+                            artist={artist} />
+                        </AlbumWrapper>
                     ))}
-                </ul>
+                </StyledList>
             </div>
         </div>
     )
