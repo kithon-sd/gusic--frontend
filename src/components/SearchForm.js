@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 import styled from 'styled-components'
 
 import { findAlbums, resetAlbums } from '../reducers/albumListReducer'
+import AlbumCard from './AlbumCard'
 
-const StyledLink = styled(Link)`
-color: #aaa;
-text-decoration:none
-&:hover {
-    color: #00e676;
-    text-decoration: underline;
+const StyledList = styled.ul`
+list-style: none;
+`
+
+const AlbumWrapper = styled.li`
+@media (min-width: 1400px) {
+    width: 40%;
 }
+width: 100%
 `
 
 const SearchForm = (props) => {
@@ -33,15 +35,17 @@ const SearchForm = (props) => {
 
 
     return (
-        <ul>
+        <StyledList>
             {albums.length > 0 ? albums.map(album => (
-                <li key={album.mbid}>
-                    <StyledLink to={`/music/${encodeURI(album.artist)}/${encodeURI(album.name)}`}>
-                        {album.artist} - {album.name}
-                    </StyledLink>
-                </li>
+                <AlbumWrapper key={album.mbid || album.url}>
+                        <AlbumCard
+                        cover={album.image.find(img => img.size === 'large')['#text']}
+                        name={album.name}
+                        artist={album.artist}
+                        />
+                </AlbumWrapper>
             )) : <h2>Loading..</h2>}
-        </ul>
+        </StyledList>
     )
 }
 

@@ -7,6 +7,16 @@ const StyledTracklist = styled.ul`
 list-style: none;
 `
 
+const TrackWrapper = styled.li`
+margin-bottom: 5px;
+`
+
+const TrackName = styled.span`
+margin-left: 10px;
+margin-right: 20px;
+font-size: 20px;
+`
+
 const Tracklist = (props) => {
     const {
         tracklist,
@@ -52,8 +62,12 @@ const Tracklist = (props) => {
     return (
         <StyledTracklist>
             {tracklist.map(track => (
-                <li key={track.url || track.mbid}>
-                    <span>{track['@attr'].rank}. {track.name}  {calculateDuration(track.duration)}</span>
+                <TrackWrapper key={track.url || track.mbid}>
+                    <span>
+                        <span>{track['@attr'].rank}.</span>
+                        <TrackName>{track.name}</TrackName>
+                        <span>{calculateDuration(track.duration)}</span>
+                    </span>
                     {checkLoved(track.name) ? 
                     <LovedButton
                     request={remove}
@@ -72,7 +86,7 @@ const Tracklist = (props) => {
                     handleNotification={handleNotification}
                     />
                 }
-                </li>
+                </TrackWrapper>
             ))}
         </StyledTracklist>
     )

@@ -59,8 +59,8 @@ const AlbumCard = props => {
         <CardWrapper>
             <StyledImg src={cover} alt={name} />
             <AlbumDataWrapper>
-                <AlbumName to={`/music/${encodeURIComponent(artist)}/${encodeURIComponent(name)}`}>{name}</AlbumName>
-                <AlbumArtist to={`/music/${encodeURIComponent(artist)}`}>{artist}</AlbumArtist>
+                <AlbumName to={`/music/${encodeURI(artist)}/${encodeURI(name)}`}>{name}</AlbumName>
+                <AlbumArtist to={`/music/${encodeURI(artist)}`}>{artist}</AlbumArtist>
             </AlbumDataWrapper>
         </CardWrapper>
         </Noway>
