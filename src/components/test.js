@@ -1,18 +1,18 @@
-import React from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
+import Hamburger from './Navigation/Hamburger/Hamburger'
+import Menu from './Navigation/Menu/Menu'
 
 const Test = () => {
-    const handleClick = async () => {
-        const response = await axios.get('http://localhost:3003/api/user/getLovedTracks', {
-            params: {
-                user: 'kithon-fw'
-            }
-        })
-        console.log(response.data)
+    const [open, setOpen] = useState(false)
+    const toggleMenu = () => {
+        setOpen(!open)
     }
 
     return (
-        <button onClick={handleClick}>Test button</button>
+        <>
+        <Hamburger open={open} toggle={toggleMenu} />
+        <Menu open={open} />
+        </>
     )
 }
 
