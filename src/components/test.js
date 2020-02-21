@@ -1,18 +1,10 @@
-import React, { useState } from 'react'
-import Hamburger from './Navigation/Hamburger/Hamburger'
-import Menu from './Navigation/Menu/Menu'
+import React from 'react'
+import MobileNav from './Navigation/MobileNav'   
 
 const Test = () => {
-    const [open, setOpen] = useState(false)
-    const toggleMenu = () => {
-        setOpen(!open)
-    }
 
     return (
-        <>
-        <Hamburger open={open} toggle={toggleMenu} />
-        <Menu open={open} />
-        </>
+        <MobileNav />
     )
 }
 

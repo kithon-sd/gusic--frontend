@@ -8,7 +8,7 @@ import Album from './components/Album'
 import Artist from './components/Artist'
 import Auth from './components/Auth';
 import Backlog from './components/Backlog'
-import Navigation from './components/Navigation'
+import NavWrapped from './components/Navigation/NavWrapped'
 
 import Test from './components/test'
 
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Wrapper>
     <Router>
-      <Route component={Navigation} />
+      <Route component={NavWrapped} />
       <Route exact path='/' component={Main} />
       <Route path='/search' component={SearchForm} />
       <Route path='/music/:albumArtist/:albumName' component={Album} />

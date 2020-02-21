@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import BacklogLink from './BacklogLink'
-import LoginButton from './LoginButton'
-import LovedTracksLink from './LovedTracksLink'
+import BacklogLink from '../BacklogLink'
+import LoginButton from '../LoginButton'
+import LovedTracksLink from '../LovedTracksLink'
 
 const Nav = styled.div`
 display: flex;
@@ -12,6 +12,10 @@ background-color: #00e676;
 width: 100%;
 margin: 0;
 padding: 0;
+
+@media (max-width: 768px) {
+    display: none;
+}
 `
 
 const Wrapper = styled.div`
@@ -27,7 +31,7 @@ margin: auto 5px;
 display: inline-block;
 `
 
-const Navigation = () => {
+const DesktopNav = () => {
     return (
         <Nav>
             <Link to='/'>
@@ -54,4 +58,4 @@ const Navigation = () => {
     )
 }
 
-export default Navigation
+export default DesktopNav

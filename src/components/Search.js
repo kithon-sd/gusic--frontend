@@ -13,7 +13,7 @@ const SearchBar = styled.input`{
     padding: 5px;
     height: 20px;
     outline: none;
-    background-color: #424242
+    background-color: ${props => props.theme.primary.dark};
     color: #fff;
     font-size: 16px;
     &:focus {

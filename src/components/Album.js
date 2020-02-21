@@ -18,7 +18,7 @@ const MainWrapper = styled.div`
 @media (min-width: 1025px) {
     display: flex;
 }
-margin-top: 50px;
+margin-top: 4rem;
 `
 
 

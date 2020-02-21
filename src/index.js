@@ -9,7 +9,9 @@ import themeSelect from './services/themes'
 const GlobalStyles = createGlobalStyle`
 body {
     font-family: 'Roboto Condensed', sans-serif;
-    background-color: ${props => props.theme.primary.regular}
+    background-color: ${props => props.theme.primary.regular};
+    margin: 0;
+    padding: 0;
 
 }
 `
