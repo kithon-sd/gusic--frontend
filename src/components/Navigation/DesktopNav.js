@@ -8,7 +8,7 @@ import LovedTracksLink from '../LovedTracksLink'
 
 const Nav = styled.div`
 display: flex;
-background-color: #00e676;
+background-color: ${props => props.theme.secondary.regular};
 width: 100%;
 margin: 0;
 padding: 0;

@@ -17,7 +17,7 @@ body {
 `
 
 ReactDOM.render(
-    <ThemeProvider theme={themeSelect()}>
+    <ThemeProvider theme={themeSelect('neapolitan')}>
     <GlobalStyles />
     <Provider store={store}>
         <App />

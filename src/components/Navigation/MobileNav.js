@@ -8,9 +8,8 @@ background-color: ${props => props.theme.secondary.regular};
 padding-top: 1em;
 padding-bottom: 1em;
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   display: none;
-  overflow-y: hidden;
 }
 `
 
@@ -23,7 +22,7 @@ const MobileNav = () => {
     return (
         <TopWrapper>
           <Hamburger open={open} toggle={toggleMenu} />
-          <Menu open={open} />
+          <Menu open={open} toggle={toggleMenu} />
         </TopWrapper>
     )
 }

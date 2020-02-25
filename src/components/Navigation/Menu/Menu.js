@@ -5,13 +5,13 @@ import LovedTracksLink from '../../LovedTracksLink'
 import BacklogLink from '../../BacklogLink'
 import LoginButton from '../../LoginButton'
 
-const Menu = ({open}) => {
+const Menu = ({open, toggle}) => {
     return (
         <StyledMenu open={open}>
-            <Link to="/">Home</Link>
-            <LovedTracksLink />
-            <BacklogLink />
-            <LoginButton />
+              <Link tabindex={open ? '1' : '-1'} to="/" onClick={toggle}>Home</Link>
+              <LovedTracksLink tabindex={open ? '1' : '-1'} />
+              <BacklogLink tabindex={open ? '1' : '-1'} toggle={toggle} />
+              <LoginButton tabindex={open ? '1' : '-1'} />
         </StyledMenu>
     )
 }

@@ -23,7 +23,8 @@
     "eject": "react-scripts eject",
     "generateBuild": "rd /s build & npm run build",
     "stageBuild": "xcopy /s /i build \"..\\gusic staging\\build\"",
-    "stage:full": "rd /s build & npm run build && xcopy /s /i build \"..\\gusic-staging\\build\""
+    "stage:full": "rd /s build & npm run build && xcopy /s /i build \"..\\gusic-staging\\build\"",
+    "watch": "cd ..\\gusic-staging && npm run watch"
   },
   "proxy": "http://localhost:3003",
   "eslintConfig": {

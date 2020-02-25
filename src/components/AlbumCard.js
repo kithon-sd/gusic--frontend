@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
-const Noway = styled.div`
+// not sure what this does but dont remove it
+const Noway = styled.div` 
 min-width: 40%;
 @media (max-width: 800px) {
     width: 100%;
@@ -11,8 +11,11 @@ min-width: 40%;
 
 const CardWrapper = styled.div` 
 display: flex;
-border-right: 1px solid #00e676;
+border-right: 1px solid ${props => props.theme.secondary.regular};
 margin-bottom: 30px;
+@media (max-width: 768px) {
+    margin-left: 10px;
+}
 `
 
 const AlbumDataWrapper = styled.div`
@@ -21,30 +24,46 @@ flex-direction: column;
 justify-content: center;
 margin-left: 20px;
 margin-right: 20px;
+
+@media (max-width: 768px) {
+}
 `
 
 const AlbumName = styled(Link)`
 font-size: 40px;
-color: #aaa;
-text-decoration:none
+color: ${props => props.theme.text.black};
+text-decoration:none;
 &:hover {
-    color: #00e676;
+    color: ${props => props.theme.secondary.regular};
     text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    font-size: 2em;
 }
 `
 
 const AlbumArtist = styled(Link)`
 font-size: 24px;
-color: #aaa;
-text-decoration:none
+color: ${props => props.theme.text.black};
+text-decoration:none;
 &:hover {
-    color: #00e676;
+    color: ${props => props.theme.secondary.regular};
     text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    font-size: 1.5em;
 }
 `
 
 const StyledImg = styled.img`
 height: 100%;
+
+@media (max-width: 768px) {
+    height: 30%;
+    width: 30%;
+}
 `
 
 const AlbumCard = props => {

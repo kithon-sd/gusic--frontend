@@ -8,14 +8,13 @@ import {
 
 const StyledButton = styled.button`
 padding: 5px;
-border: 1px solid #00e676;
-background-color: #424242;
-color: #fff;
+outline: 1px solid ${props => props.theme.secondary.regular};
+border: none;
+background-color: ${props => props.theme.primary.dark};
+color: ${props => props.theme.text.special};
 margin-top: 10px;
 &:hover {
-    border: 1px solid #424242;
-    color: #424242;
-    background-color: #00e676;
+    outline: 3px solid ${props => props.theme.secondary.regular};
 }
 `
 

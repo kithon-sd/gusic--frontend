@@ -8,6 +8,11 @@ const mariner = {
         light: '#66ffa5',
         regular: '#00e676',
         dark: '#00b147',
+    },
+    text: {
+        white: '#fff',
+        black: '#000',
+        special: '#fff'
     }
 }
 
@@ -21,6 +26,11 @@ const neapolitan = {
         light: '#ffd8f1',
         regular: '#eaa6be',
         dark: '#b7768e',
+    },
+    text: {
+        white: '#fff',
+        black: '#000',
+        special: '#000',
     }
 }
 

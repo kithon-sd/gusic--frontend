@@ -8,12 +8,12 @@ height: 50%;
 margin-left: 5px;
 margin-top: auto;
 margin-bottom: auto;
-background-color: #424242;
-color: #00e676;
-border: 1px solid #00e676
+background-color: ${props => props.theme.primary.dark};
+color: #000;
+border: none;
+outline: 1px solid ${props => props.theme.secondary.regular};
 &:hover {
-    background-color: #00e676;
-    color: #424242
+    outline: 3px solid ${props => props.theme.secondary.regular}
 }
 `
 

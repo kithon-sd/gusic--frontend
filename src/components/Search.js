@@ -9,17 +9,15 @@ transform: translate(-50%, -50%);
 `
 const SearchBar = styled.input`{
     width: 100%;
-    border: 1px solid #00e676;
+    border: 1px solid ${props => props.theme.secondary.regular};
     padding: 5px;
     height: 20px;
     outline: none;
     background-color: ${props => props.theme.primary.dark};
-    color: #fff;
+    color: ${props => props.theme.text.special};
     font-size: 16px;
     &:focus {
-        -webkit-box-shadow: 10px -5px 26px 1px rgba(0,0,0,0.75);
-        -moz-box-shadow: 10px -5px 26px 1px rgba(0,0,0,0.75);
-         box-shadow: 10px -5px 26px 1px rgba(0,0,0,0.75);
+        outline: 3px solid ${props => props.theme.secondary.dark};
     }
 `
 
