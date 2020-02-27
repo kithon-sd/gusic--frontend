@@ -12,6 +12,7 @@ export const addUserToData = (name, sessionKey) => {
                 {
                     name: name,
                     sessionKey: sessionKey,
+                    theme: 'mariner',
                     backlog: []
                 }
             ]
@@ -28,7 +29,8 @@ export const addUserToData = (name, sessionKey) => {
                     {
                         name: cachedUser.name,
                         sessionKey: sessionKey,
-                        backlog: cachedUser.backlog
+                        backlog: cachedUser.backlog,
+                        theme: cachedUser.theme
                     }
                 ]
             }
@@ -40,7 +42,8 @@ export const addUserToData = (name, sessionKey) => {
                     {
                         name: name,
                         sessionKey: sessionKey,
-                        backlog: []
+                        backlog: [],
+                        theme: 'mariner'
                     }
                 ]
             }
@@ -54,7 +57,11 @@ export const addCurrentUser = (name) => {
     const cachedUser = userData.users.find(user => user.name === name)
 
     if (cachedUser) {
-        window.localStorage.setItem('gusic_currentUser', cachedUser.name)
+        const newCurrentUser = {
+            name: cachedUser.name,
+            theme: cachedUser.theme
+        }
+        window.localStorage.setItem('gusic_currentUser', JSON.stringify(newCurrentUser))
     } else {
         const newCurrentUser = {
             name: name
@@ -111,7 +118,7 @@ export const addToBacklog = (name, album) => {
 }
 
 export const clearCurrentUser = () => {
-    window.localStorage.setItem('gusic_currentUser', '')
+    window.localStorage.setItem('gusic_currentUser', JSON.stringify({name: '', theme: 'mariner'}))
 }
 
 export const fetchUserData = () => {
@@ -145,6 +152,51 @@ export const removeFromBacklog = (name, album) => {
         ]
     }
     window.localStorage.setItem('gusic_userData', JSON.stringify(newUserData))
+}
 
-    console.log(`${album} removed from backlog of ${name}`)
+export const getCurrentUserTheme = () => {
+    const currentUser = localStorage.getItem('gusic_currentUser')
+
+    if (!currentUser) {
+        return 'mariner'
+    } else {
+        return JSON.parse(currentUser).theme
+    }
+}
+
+export const setTheme = (name, theme) => {
+    const userData = JSON.parse(window.localStorage.getItem('gusic_userData'))
+    const targetUser = userData.users.find(user => user.name === name)
+    const filteredUserData = userData.users.filter(user => user.name !== name)
+    const currentUserData = JSON.parse(localStorage.getItem('gusic_currentUser'))
+
+    const newCurrentUser = {
+        ...currentUserData,
+        theme: theme
+    }
+
+    const newTargetUser = {
+        ...targetUser,
+        theme: theme
+    }
+
+    const newUserData = {
+        users: [
+            ...filteredUserData,
+            newTargetUser
+        ]
+    }
+    localStorage.setItem('gusic_currentUser', JSON.stringify(newCurrentUser))
+    window.localStorage.setItem('gusic_userData', JSON.stringify(newUserData))
+    window.location.reload()
+}
+
+export const getCurrentUser = () => {
+    const currentUser = localStorage.getItem('gusic_currentUser')
+    
+    if (currentUser) {
+        return JSON.parse(currentUser).name
+    } else {
+        return null
+    }
 }

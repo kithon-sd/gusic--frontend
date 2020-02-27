@@ -11,6 +11,7 @@ const Menu = ({open, toggle}) => {
               <Link tabindex={open ? '1' : '-1'} to="/" onClick={toggle}>Home</Link>
               <LovedTracksLink tabindex={open ? '1' : '-1'} />
               <BacklogLink tabindex={open ? '1' : '-1'} toggle={toggle} />
+              <Link tabindex={open ? '1' : '-1'} to="/settings" onClick={toggle}>Settings</Link>
               <LoginButton tabindex={open ? '1' : '-1'} />
         </StyledMenu>
     )

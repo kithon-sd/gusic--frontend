@@ -7,12 +7,21 @@ const StyledLogin = styled.button`
 `
 
 const LoginButton = () => {
-    const [username, setUsername] = useState(window.localStorage.getItem('gusic_currentUser'))
-
     const currentUsername = window.localStorage.getItem('gusic_currentUser')
+    const [username, setUsername] = useState(ihatejson())
+
+    function ihatejson()  {
+        if (!currentUsername) return ''
+        if (currentUsername) {
+            console.log()
+            const parsed = JSON.parse(currentUsername)
+            return parsed.name
+        }
+    }
+
     useEffect(() => {
-        setUsername(currentUsername)
-    }, [currentUsername])
+        ihatejson()
+    }, [])
 
     const handleLogin = async () => {
         const response = await fetchApiKey()

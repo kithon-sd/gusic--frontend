@@ -5,6 +5,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import App from './App';
 import store from './store';
 import themeSelect from './services/themes'
+import { getCurrentUserTheme } from './services/helper'
 
 const GlobalStyles = createGlobalStyle`
 body {
@@ -17,7 +18,7 @@ body {
 `
 
 ReactDOM.render(
-    <ThemeProvider theme={themeSelect('neapolitan')}>
+    <ThemeProvider theme={themeSelect(getCurrentUserTheme())}>
     <GlobalStyles />
     <Provider store={store}>
         <App />

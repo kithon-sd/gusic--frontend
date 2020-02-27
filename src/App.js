@@ -9,6 +9,7 @@ import Artist from './components/Artist'
 import Auth from './components/Auth';
 import Backlog from './components/Backlog'
 import NavWrapped from './components/Navigation/NavWrapped'
+import Settings from './components/Settings/SettingsMain'
 
 import Test from './components/test'
 
@@ -29,6 +30,7 @@ const App = () => {
       <Route path='/auth' component={Auth} />
       <Route path='/backlog' component={Backlog} />
       <Route path='/test' component={Test} />
+      <Route path='/settings' component={Settings} />
     </Router>
     </Wrapper>
   )

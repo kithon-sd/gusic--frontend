@@ -49,6 +49,12 @@ const DesktopNav = () => {
                     </StyledNavElement>
 
                     <StyledNavElement>
+                        <Link to='/settings'>
+                            Settings
+                        </Link>
+                    </StyledNavElement>
+
+                    <StyledNavElement>
                         <LoginButton/>
                     </StyledNavElement>
                     
