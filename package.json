@@ -23,6 +23,7 @@
     "eject": "react-scripts eject",
     "generateBuild": "rd /s build & npm run build",
     "stage:full": "rd /s build & npm run build && xcopy /s /i build \"..\\gusic-staging\\build\"",
+    "stage:fuller": "git add . && git commit -m uibuild && git push origin wip && npm run stage:full",
     "watch": "cd ..\\gusic-staging && npm run watch"
   },
   "proxy": "http://localhost:3003",

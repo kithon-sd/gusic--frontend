@@ -11,29 +11,27 @@ text-decoration:none
 }
 `
 
-const BacklogLink = (props) => {
+const SettingsLink = (props) => {
     const currentUser = window.localStorage.getItem('gusic_currentUser')
     const parsed = JSON.parse(currentUser)
 
-    if (!parsed || !currentUser) {
-        return (
-            <></>
-        )
-    } 
+    if (!currentUser || !parsed) {
+        return <></>
+    }
     
     if (props.toggle) {
         return (
-            <StyledLink to="/backlog" onClick={props.toggle}>
-                Backlog
+            <StyledLink to="/settings" onClick={props.toggle}>
+                Settings
             </StyledLink>
         )
     }
     
     return (
-        <StyledLink to="/backlog">
-            Backlog
+        <StyledLink to="/settings">
+            Settings
         </StyledLink>
     )
 }
 
-export default BacklogLink
+export default SettingsLink

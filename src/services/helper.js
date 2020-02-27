@@ -160,7 +160,8 @@ export const getCurrentUserTheme = () => {
     if (!currentUser) {
         return 'mariner'
     } else {
-        return JSON.parse(currentUser).theme
+        const parsed = JSON.parse(currentUser)
+        return parsed.theme
     }
 }
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import BacklogLink from '../BacklogLink'
+import SettingsLink from '../SettingsLink'
 import LoginButton from '../LoginButton'
 import LovedTracksLink from '../LovedTracksLink'
 
@@ -49,9 +50,7 @@ const DesktopNav = () => {
                     </StyledNavElement>
 
                     <StyledNavElement>
-                        <Link to='/settings'>
-                            Settings
-                        </Link>
+                        <SettingsLink />
                     </StyledNavElement>
 
                     <StyledNavElement>

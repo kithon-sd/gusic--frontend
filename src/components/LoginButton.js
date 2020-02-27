@@ -13,7 +13,6 @@ const LoginButton = () => {
     function ihatejson()  {
         if (!currentUsername) return ''
         if (currentUsername) {
-            console.log()
             const parsed = JSON.parse(currentUsername)
             return parsed.name
         }

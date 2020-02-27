@@ -7,8 +7,9 @@ text-decoration:none;
 
 const LovedTracksLink = () => {
     const currentUser = window.localStorage.getItem('gusic_currentUser')
+    const parsed = JSON.parse(currentUser)
 
-    if (!currentUser) {
+    if (!parsed || !currentUser) {
         return <div/>
     }
 
