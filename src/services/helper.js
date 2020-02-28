@@ -126,8 +126,8 @@ export const fetchUserData = () => {
     const userData = JSON.parse(window.localStorage.getItem('gusic_userData'))
     if (!userData) return 
 
-    const currentUser = window.localStorage.getItem('gusic_currentUser')
-    const currentUserData = userData.users.find(user => user.name === currentUser)
+    const currentUser = JSON.parse(window.localStorage.getItem('gusic_currentUser'))
+    const currentUserData = userData.users.find(user => user.name === currentUser.name)
     return {
         userData,
         currentUser,

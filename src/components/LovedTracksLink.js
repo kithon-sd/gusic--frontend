@@ -9,12 +9,12 @@ const LovedTracksLink = () => {
     const currentUser = window.localStorage.getItem('gusic_currentUser')
     const parsed = JSON.parse(currentUser)
 
-    if (!parsed || !currentUser) {
+    if (!parsed || !currentUser || !parsed.name) {
         return <div/>
     }
 
     return (
-        <StyledLink href={`https://www.last.fm/user/${currentUser}/loved`}>Loved Tracks</StyledLink>
+        <StyledLink href={`https://www.last.fm/user/${parsed.name}/loved`}>Loved Tracks</StyledLink>
     )
 }
 

@@ -45,7 +45,7 @@ const Album = (props) => {
      let currentUser;
      let currentUserData;
     if (fetchUserData()) {
-        currentUser = fetchUserData().currentUser
+        currentUser = fetchUserData().currentUser.name
         currentUserData = fetchUserData().currentUserData
     }
 

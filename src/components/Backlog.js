@@ -9,8 +9,9 @@ const Backlog = () => {
     let currentUser
     let currentUserData
     if (fetchUserData()) {
-        currentUser = fetchUserData().currentUser
+        currentUser = fetchUserData().currentUser.name
         currentUserData = fetchUserData().currentUserData
+        console.log(currentUser)
     }
 
     const handleClick = (name, title) => {
