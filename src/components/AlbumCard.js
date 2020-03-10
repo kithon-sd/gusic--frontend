@@ -31,8 +31,8 @@ margin-right: 20px;
 
 const AlbumName = styled(Link)`
 font-size: 40px;
-color: ${props => props.theme.text.black};
-text-decoration:none;
+text-decoration: none;
+color: ${props => props.theme.text.special};
 &:hover {
     color: ${props => props.theme.secondary.regular};
     text-decoration: underline;
@@ -45,8 +45,8 @@ text-decoration:none;
 
 const AlbumArtist = styled(Link)`
 font-size: 24px;
-color: ${props => props.theme.text.black};
-text-decoration:none;
+text-decoration: none;
+color: ${props => props.theme.text.special};
 &:hover {
     color: ${props => props.theme.secondary.regular};
     text-decoration: underline;

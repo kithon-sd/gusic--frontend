@@ -2,7 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledLink = styled.a`
+color: #000;
 text-decoration:none;
+&:hover {
+    text-decoration: underline;
+}
 `
 
 const LovedTracksLink = () => {

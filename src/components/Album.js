@@ -24,6 +24,7 @@ margin-top: 4rem;
 
 const DescWrapper = styled.div`
 margin-left: 30px;
+color: ${props => props.theme.text.special}
 `
 
 const StyledLink = styled(Link)`
@@ -33,6 +34,10 @@ text-decoration:none
     color: #00e676;
     text-decoration: underline;
 }
+`
+
+const GenresWrapper = styled.div`
+color: ${props => props.theme.text.special}
 `
 
 const Album = (props) => {
@@ -120,7 +125,7 @@ const Album = (props) => {
                 />
                 }
 
-            <div>
+            <GenresWrapper>
                 <h3>Genres</h3>
                 <ul>
                     {album.tags.tag.map(genre => (
@@ -129,7 +134,7 @@ const Album = (props) => {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </GenresWrapper>
 
             <div>
                 <h3>Tracklist</h3>

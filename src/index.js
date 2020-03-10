@@ -13,7 +13,7 @@ body {
     background-color: ${props => props.theme.primary.regular};
     margin: 0;
     padding: 0;
-
+    color: ${props => props.theme.text.special};
 }
 `
 

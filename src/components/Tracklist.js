@@ -35,7 +35,7 @@ const Tracklist = (props) => {
         if (currentUser) {
             fetchLovedTracks(currentUser)
         }
-    }, [])
+    }, [currentUser])
 
     const checkLoved = (track) => {
          return lovedTracksData.find(i => i.name === track)

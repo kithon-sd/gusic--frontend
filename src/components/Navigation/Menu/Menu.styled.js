@@ -39,7 +39,7 @@ export const StyledMenu = styled.nav`
     &:hover,
     &:focus {
       background: ${props => props.theme.primary.regular};
-      color: ${props => props.theme.secondary.regular}
+      color: ${props => props.theme.secondary.regular};
     }
   }
 `;

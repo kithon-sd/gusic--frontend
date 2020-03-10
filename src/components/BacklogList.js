@@ -9,7 +9,7 @@ margin-left: 5px;
 margin-top: auto;
 margin-bottom: auto;
 background-color: ${props => props.theme.primary.dark};
-color: #000;
+color: ${props => props.theme.text.special};
 border: none;
 outline: 1px solid ${props => props.theme.secondary.regular};
 &:hover {

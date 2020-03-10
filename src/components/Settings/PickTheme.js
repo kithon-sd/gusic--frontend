@@ -1,5 +1,6 @@
 import React from 'react'
 import { setTheme, getCurrentUser } from '../../services/helper'
+import { ThemeButton } from './ThemeButton.styled'
 
 const PickTheme = () => {
     const currentUser = getCurrentUser()
@@ -8,13 +9,15 @@ const PickTheme = () => {
             <h2>
                 Pick a theme:
             </h2>
-        <button onClick={() => setTheme(currentUser, 'neapolitan')}>
+        <ThemeButton 
+        colorScheme={'neapolitan'}
+        onClick={() => setTheme(currentUser, 'neapolitan')}>
             Neapolitan
-        </button>
+        </ThemeButton>
 
-        <button onClick={() => setTheme(currentUser, 'mariner')}>
+        <ThemeButton onClick={() => setTheme(currentUser, 'mariner')}>
             Mariner
-        </button>
+        </ThemeButton>
         </div>
     )
 }

@@ -8,7 +8,7 @@ background-color: ${props => props.theme.secondary.regular};
 padding-top: 1em;
 padding-bottom: 1em;
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   display: none;
 }
 `
